@@ -10,7 +10,8 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f7f6; /* Light gray */
+            color: #333; /* Dark gray text */
         }
         /* Hero Section */
         .hero {
@@ -31,6 +32,12 @@
             font-size: 1.2rem;
             margin-top: 10px;
         }
+        .hero img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
         /* About Me Section */
         .about {
             padding: 40px 20px;
@@ -39,6 +46,7 @@
         }
         .about h2 {
             font-size: 2.5rem;
+            color: #2f3c52; /* Navy blue */
         }
         .about p {
             font-size: 1.1rem;
@@ -49,7 +57,7 @@
         .skills {
             display: flex;
             justify-content: space-around;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 40px 20px;
         }
         .skill {
@@ -58,16 +66,18 @@
         }
         .skill h3 {
             font-size: 1.8rem;
+            color: #2f3c52; /* Navy blue */
         }
         /* Insights Section */
         .insights {
-            background-color: #282828;
+            background-color: #2f3c52; /* Navy blue */
             color: white;
             padding: 40px 20px;
             text-align: center;
         }
         .insights h2 {
             font-size: 2.5rem;
+            margin-bottom: 20px;
         }
         .insights p {
             font-size: 1.2rem;
@@ -75,7 +85,7 @@
         }
         /* Contact Section */
         .contact {
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* Emerald green */
             color: white;
             text-align: center;
             padding: 30px;
@@ -94,13 +104,35 @@
             color: white;
             padding: 10px;
         }
+        nav {
+            text-align: center;
+            background-color: #2f3c52; /* Navy blue */
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #4CAF50; /* Emerald green */
+        }
     </style>
 </head>
 <body>
 
+<!-- Navigation Bar -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
 <!-- Hero Section -->
 <div class="hero">
-    <img src="your-picture.jpg" alt="Kazi Sifatul Islam" style="border-radius: 50%; width: 150px; height: 150px;">
+    <img src="your-image.jpg" alt="Kazi Sifatul Islam">
     <h1>Kazi Sifatul Islam</h1>
     <p>Graduate Research Assistant at Texas State University | Robotics, AI & Machine Learning Enthusiast</p>
 </div>
@@ -108,7 +140,7 @@
 <!-- About Me Section -->
 <div class="about">
     <h2>About Me</h2>
-    <p>I am a Graduate Research Assistant focused on developing intelligent systems using Robotics and AI. I am passionate about Reinforcement Learning, Multi-Agent Systems, and Edge AI. I aim to pursue a PhD in Electrical Engineering to advance research in these fields.</p>
+    <p>I am a **Graduate Research Assistant** at Texas State University specializing in **Reinforcement Learning**, **Multi-Agent Systems**, and **Edge AI**. My primary goal is to develop intelligent systems that can solve real-world problems. I am currently looking for opportunities to pursue a **PhD** in **Electrical Engineering**.</p>
 </div>
 
 <!-- Skills Section -->
@@ -130,14 +162,13 @@
 <!-- Insights Section -->
 <div class="insights">
     <h2>My Research Goals</h2>
-    <p>I am currently working on applying Reinforcement Learning for Multi-Agent Systems to optimize decision-making in robotics. My research aims to solve complex, real-world problems in autonomous systems, energy grids, and more.</p>
+    <p>I am currently focused on applying **Reinforcement Learning** to **Multi-Agent Systems** for optimizing decision-making in **autonomous systems**. My research aims to advance **AI-driven solutions** for robotics, energy management, and real-time systems.</p>
 </div>
 
 <!-- Contact Section -->
 <div class="contact">
     <h2>Let's Connect!</h2>
-    <p>Feel free to reach out if you have any questions or would like to collaborate on research opportunities!</p>
-    <p>Email me at: <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></p>
+    <p>Feel free to reach out via email at: <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></p>
 </div>
 
 <!-- Footer -->
