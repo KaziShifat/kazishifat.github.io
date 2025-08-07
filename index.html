@@ -3,107 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kazi Sifatul Islam - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
         }
-        header {
-            background-color: #333;
+        /* Hero Section */
+        .hero {
+            background: url('your-image.jpg') no-repeat center center/cover;
+            height: 100vh;
             color: white;
-            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        /* About Me Section */
+        .about {
+            padding: 40px 20px;
+            background-color: white;
             text-align: center;
         }
-        header h1 {
-            margin: 0;
+        .about h2 {
             font-size: 2.5rem;
         }
-        nav {
+        .about p {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            color: #555;
+        }
+        /* Skills Section */
+        .skills {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 40px 20px;
+        }
+        .skill {
             text-align: center;
-            background-color: #444;
+            flex-basis: 30%;
         }
-        nav a {
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
+        .skill h3 {
             font-size: 1.8rem;
-            color: #333;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+        /* Insights Section */
+        .insights {
+            background-color: #282828;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
         }
-        ul li {
-            margin-bottom: 10px;
+        .insights h2 {
+            font-size: 2.5rem;
+        }
+        .insights p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        /* Contact Section */
+        .contact {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        .contact p {
+            font-size: 1.2rem;
+        }
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
         }
         footer {
+            text-align: center;
             background-color: #333;
             color: white;
             padding: 10px;
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        .contact-info a {
-            color: #4CAF50;
-            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-<header>
+<!-- Hero Section -->
+<div class="hero">
+    <img src="your-picture.jpg" alt="Kazi Sifatul Islam" style="border-radius: 50%; width: 150px; height: 150px;">
     <h1>Kazi Sifatul Islam</h1>
-    <p>+1 (737) 388 9983 | <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a> | <a href="mailto:kazi_sifat@txstate.edu">kazi_sifat@txstate.edu</a></p>
-    <div class="contact-info">
-        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a> | 
-        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> | 
-        <a href="https://www.researchgate.net" target="_blank">ResearchGate</a>
+    <p>Graduate Research Assistant at Texas State University | Robotics, AI & Machine Learning Enthusiast</p>
+</div>
+
+<!-- About Me Section -->
+<div class="about">
+    <h2>About Me</h2>
+    <p>I am a Graduate Research Assistant focused on developing intelligent systems using Robotics and AI. I am passionate about Reinforcement Learning, Multi-Agent Systems, and Edge AI. I aim to pursue a PhD in Electrical Engineering to advance research in these fields.</p>
+</div>
+
+<!-- Skills Section -->
+<div class="skills">
+    <div class="skill">
+        <h3>Robotics</h3>
+        <p>ROS2, SLAM, Path Planning</p>
     </div>
-</header>
+    <div class="skill">
+        <h3>Machine Learning</h3>
+        <p>Reinforcement Learning, TensorFlow, PyTorch</p>
+    </div>
+    <div class="skill">
+        <h3>Edge AI</h3>
+        <p>AI on Embedded Systems, NVIDIA Jetson, Raspberry Pi</p>
+    </div>
+</div>
 
-<!-- Navigation bar -->
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Me</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-</nav>
+<!-- Insights Section -->
+<div class="insights">
+    <h2>My Research Goals</h2>
+    <p>I am currently working on applying Reinforcement Learning for Multi-Agent Systems to optimize decision-making in robotics. My research aims to solve complex, real-world problems in autonomous systems, energy grids, and more.</p>
+</div>
 
-<!-- Homepage content -->
-<section>
-    <h2>Welcome to My Portfolio</h2>
-    <p>Hi! I'm **Kazi Sifatul Islam**, a robotics researcher and software engineer. This is my personal portfolio where I showcase my work, research, and projects.</p>
-</section>
+<!-- Contact Section -->
+<div class="contact">
+    <h2>Let's Connect!</h2>
+    <p>Feel free to reach out if you have any questions or would like to collaborate on research opportunities!</p>
+    <p>Email me at: <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></p>
+</div>
 
-<section>
-    <h2>EDUCATION</h2>
-    <ul>
-        <li><strong>Master of Science in Electrical Engineering</strong> - Texas State University, San Marcos, Texas (Fall 2024 - Present), GPA: 4.00</li>
-        <li><strong>Bachelor of Science in Electrical and Electronic Engineering</strong> - Chittagong University of Engineering and Technology (CUET), Bangladesh (Mar 2013 - Aug 2018)</li>
-    </ul>
-</section>
-
+<!-- Footer -->
 <footer>
     <p>© 2025 Kazi Sifatul Islam | All Rights Reserved</p>
 </footer>
