@@ -1,180 +1,485 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kazi Sifatul Islam - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6; /* Light gray */
-            color: #333; /* Dark gray text */
-        }
-        /* Hero Section */
-        .hero {
-            background: url('your-image.jpg') no-repeat center center/cover;
-            height: 100vh;
-            color: black;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        .hero img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-        }
-        /* About Me Section */
-        .about {
-            padding: 40px 20px;
-            background-color: white;
-            text-align: center;
-        }
-        .about h2 {
-            font-size: 2.5rem;
-            color: #2f3c52; /* Navy blue */
-        }
-        .about p {
-            font-size: 1.1rem;
-            margin-top: 15px;
-            color: #555;
-        }
-        /* Skills Section */
-        .skills {
-            display: flex;
-            justify-content: space-around;
-            background-color: #ffffff;
-            padding: 40px 20px;
-        }
-        .skill {
-            text-align: center;
-            flex-basis: 30%;
-        }
-        .skill h3 {
-            font-size: 1.8rem;
-            color: #2f3c52; /* Navy blue */
-        }
-        /* Insights Section */
-        .insights {
-            background-color: #2f3c52; /* Navy blue */
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .insights h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .insights p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        /* Contact Section */
-        .contact {
-            background-color: #4CAF50; /* Emerald green */
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        .contact p {
-            font-size: 1.2rem;
-        }
-        .contact a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        footer {
-            text-align: center;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
-        nav {
-            text-align: center;
-            background-color: #2f3c52; /* Navy blue */
-            padding: 10px 0;
-        }
-        nav a {
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            background-color: #4CAF50; /* Emerald green */
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kazi Sifatul Islam — Research Portfolio</title>
+  <meta name="description" content="Research portfolio of Kazi Sifatul Islam — Robotics, RL, MARL, Edge AI." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fbfbfc;
+      --paper:#ffffff;
+      --ink:#1a1d29;
+      --muted:#5c6473;
+      --line:#e9edf3;
+      --brand:#8b5cf6;      /* violet */
+      --brand-2:#f59e0b;    /* amber  */
+      --accent:#10b981;     /* emerald */
+      --radius:18px;
+      --shadow:0 20px 50px rgba(14,17,26,.08);
+      --max:1100px;
+    }
+    [data-theme="dark"]{
+      --bg:#0f1220;
+      --paper:#12172a;
+      --ink:#eef2ff;
+      --muted:#9aa3b2;
+      --line:#273148;
+      --shadow:0 24px 60px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: Manrope, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(800px 400px at 90% -10%, rgba(139,92,246,.18), transparent 60%),
+        radial-gradient(800px 400px at 10% 110%, rgba(245,158,11,.16), transparent 60%),
+        var(--bg);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    img{max-width:100%; display:block}
+    h1,h2,h3{
+      font-family: Fraunces, serif;
+      letter-spacing:.2px;
+      line-height:1.15;
+      margin:0 0 .35rem;
+    }
+    h2{ font-size: clamp(1.6rem, 2.8vw, 2.2rem) }
+    h3{ font-size: clamp(1.2rem, 2.1vw, 1.5rem) }
+
+    /* ===== Layout ===== */
+    .wrap{ display:grid; grid-template-columns: 290px 1fr; min-height:100vh }
+    .sidebar{
+      position:sticky; top:0; height:100vh; padding:1.2rem; border-right:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,0));
+      backdrop-filter: blur(6px);
+    }
+    .brand{
+      display:flex; align-items:center; gap:.8rem; padding:.6rem .8rem; border-radius:14px;
+      background:var(--paper); border:1px solid var(--line); box-shadow:var(--shadow);
+    }
+    .gem{
+      width:14px; height:14px; border-radius:999px;
+      background: conic-gradient(from 120deg, var(--brand), var(--brand-2), var(--accent), var(--brand));
+      box-shadow:0 0 22px rgba(139,92,246,.6);
+    }
+    .name{ font-weight:800; letter-spacing:.3px }
+    .role{ color:var(--muted); font-size:.9rem; margin-left:auto }
+
+    .nav{
+      margin:1rem 0 0; display:flex; flex-direction:column; gap:.2rem;
+    }
+    .nav a{
+      text-decoration:none; padding:.55rem .8rem; border-radius:12px; color:var(--muted);
+    }
+    .nav a.active,.nav a:hover{ background:var(--paper); color:var(--ink); border:1px solid var(--line) }
+    .sidebar .meta{
+      margin-top:auto; padding:.8rem; color:var(--muted); font-size:.92rem
+    }
+    .toggle{
+      margin-top:.6rem; display:inline-flex; gap:.5rem; align-items:center;
+      background:var(--paper); border:1px solid var(--line); border-radius:12px;
+      padding:.45rem .7rem; cursor:pointer;
+    }
+
+    .content{ padding:2rem; max-width:var(--max); width:100%; margin:0 auto }
+    section{ margin: clamp(2rem, 5vw, 3rem) 0 }
+
+    /* ===== Hero ===== */
+    .hero{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:1.2rem; align-items:center;
+    }
+    .lead{
+      background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+      padding:1.2rem; box-shadow:var(--shadow); position:relative; overflow:hidden;
+    }
+    .lead::after{
+      content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+      background: linear-gradient(120deg, rgba(139,92,246,.18), rgba(16,185,129,.18), rgba(245,158,11,.18));
+      mix-blend-mode:soft-light;
+    }
+    .lead p{ color:var(--muted); margin:.2rem 0 1rem }
+    .badges{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.6rem 0 1rem }
+    .badge{
+      font-weight:700; font-size:.78rem; letter-spacing:.3px;
+      border:1px dashed var(--line); border-radius:999px; padding:.25rem .6rem; color:var(--muted)
+    }
+    .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
+    .btn{
+      display:inline-flex; align-items:center; gap:.45rem; text-decoration:none; font-weight:700;
+      padding:.6rem .9rem; border-radius:12px; border:1px solid var(--line);
+      background:linear-gradient(180deg, var(--paper), rgba(255,255,255,.85));
+      box-shadow:var(--shadow);
+    }
+    .btn.primary{ background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#fff; border:0 }
+    .stats{
+      display:grid; grid-template-columns: repeat(3,1fr); gap:.6rem; margin-top:.8rem
+    }
+    .stat{
+      text-align:center; border:1px solid var(--line); background:var(--paper); border-radius:14px; padding:.8rem
+    }
+    .stat h3{ margin:0; font-size:1.4rem }
+    .stat p{ margin:.2rem 0 0; color:var(--muted); font-size:.9rem }
+
+    .portrait{
+      border-radius:18px; overflow:hidden; border:1px solid var(--line); background:var(--paper); box-shadow:var(--shadow);
+      aspect-ratio: 4/5; display:grid; place-items:center; position:relative;
+    }
+    .portrait img{ width:100%; height:100%; object-fit:cover }
+    .blob{
+      position:absolute; inset:auto auto -40px -40px; width:220px; height:220px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(139,92,246,.45), rgba(245,158,11,.35) 60%, transparent 70%);
+      filter: blur(18px); animation: float 8s ease-in-out infinite alternate;
+    }
+    @keyframes float { to { transform: translate(16px, -12px) scale(1.08); } }
+
+    /* ===== Cards & Grids ===== */
+    .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem }
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:1rem }
+    .card{
+      background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:1rem; box-shadow:var(--shadow);
+    }
+    .tag{ font-size:.78rem; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:.15rem .5rem }
+
+    /* ===== Timeline ===== */
+    .timeline{ position:relative; margin-left:.4rem }
+    .timeline::before{ content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:linear-gradient(var(--brand), var(--brand-2)); opacity:.5 }
+    .t{ position:relative; margin-left:2rem; padding-left:1rem; margin-bottom:1rem }
+    .t::before{
+      content:""; position:absolute; left:-6px; top:.4rem; width:12px; height:12px; border-radius:50%;
+      background:conic-gradient(from 60deg, var(--brand), var(--brand-2), var(--brand));
+      box-shadow:0 0 16px rgba(139,92,246,.7);
+    }
+    .when{ color:var(--muted); font-size:.92rem }
+
+    /* ===== Reveal on scroll ===== */
+    .reveal{ opacity:0; transform:translateY(10px); transition: all .7s cubic-bezier(.2,.7,.2,1) }
+    .reveal.show{ opacity:1; transform:none }
+
+    /* ===== Footer ===== */
+    footer{ margin:3rem 0 1rem; color:var(--muted); text-align:center }
+
+    /* ===== Mobile ===== */
+    .mobilebar{
+      display:none; position:sticky; top:0; z-index:50; padding:.6rem; background:var(--paper); border-bottom:1px solid var(--line)
+    }
+    .hamb{ background:transparent; border:1px solid var(--line); border-radius:10px; padding:.45rem .6rem }
+    @media (max-width: 980px){
+      .wrap{ grid-template-columns: 1fr }
+      .sidebar{ position:fixed; inset:0 40% 0 0; height:100dvh; transform: translateX(-102%); transition: transform .35s ease; z-index:60 }
+      .sidebar.open{ transform: translateX(0) }
+      .mobilebar{ display:flex; align-items:center; justify-content:space-between }
+      .hero{ grid-template-columns:1fr }
+      .grid-3{ grid-template-columns:1fr }
+      .grid-2{ grid-template-columns:1fr }
+    }
+  </style>
 </head>
 <body>
-
-<!-- Navigation Bar -->
-<nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Me</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-</nav>
-
-<!-- Hero Section -->
-<div class="hero">
-    <img src="your-image.jpg" alt="Kazi Sifatul Islam">
-    <h1>Kazi Sifatul Islam</h1>
-    <p>Graduate Research Assistant at Texas State University | Robotics, AI & Machine Learning Enthusiast</p>
-</div>
-
-<!-- About Me Section -->
-<div class="about">
-    <h2>About Me</h2>
-    <p>I am a **Graduate Research Assistant** at Texas State University specializing in **Reinforcement Learning**, **Multi-Agent Systems**, and **Edge AI**. My primary goal is to develop intelligent systems that can solve real-world problems. I am currently looking for opportunities to pursue a **PhD** in **Electrical Engineering**.</p>
-</div>
-
-<!-- Skills Section -->
-<div class="skills">
-    <div class="skill">
-        <h3>Robotics</h3>
-        <p>ROS2, SLAM, Path Planning</p>
+  <!-- Mobile top bar -->
+  <div class="mobilebar">
+    <strong>KSI Portfolio</strong>
+    <div>
+      <button id="mTheme" class="hamb" aria-label="Toggle theme">🌗</button>
+      <button id="mMenu" class="hamb" aria-label="Open menu">☰</button>
     </div>
-    <div class="skill">
-        <h3>Machine Learning</h3>
-        <p>Reinforcement Learning, TensorFlow, PyTorch</p>
-    </div>
-    <div class="skill">
-        <h3>Edge AI</h3>
-        <p>AI on Embedded Systems, NVIDIA Jetson, Raspberry Pi</p>
-    </div>
-</div>
+  </div>
 
-<!-- Insights Section -->
-<div class="insights">
-    <h2>My Research Goals</h2>
-    <p>I am currently focused on applying **Reinforcement Learning** to **Multi-Agent Systems** for optimizing decision-making in **autonomous systems**. My research aims to advance **AI-driven solutions** for robotics, energy management, and real-time systems.</p>
-</div>
+  <div class="wrap">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar">
+      <div class="brand">
+        <span class="gem" aria-hidden="true"></span>
+        <span class="name">Kazi Sifatul Islam</span>
+        <span class="role">GRA</span>
+      </div>
+      <nav class="nav" role="menubar" style="margin-top:1rem">
+        <a href="#home" role="menuitem">Home</a>
+        <a href="#focus" role="menuitem">Research Focus</a>
+        <a href="#skills" role="menuitem">Skills</a>
+        <a href="#projects" role="menuitem">Projects</a>
+        <a href="#pubs" role="menuitem">Publications</a>
+        <a href="#exp" role="menuitem">Experience</a>
+        <a href="#edu" role="menuitem">Education</a>
+        <a href="#awards" role="menuitem">Awards</a>
+        <a href="#contact" role="menuitem">Contact</a>
+        <a class="btn" style="margin-top:.6rem" href="docs/KaziSifatulIslam_CV.pdf" download>Download CV</a>
+        <button class="toggle" id="themeToggle" aria-label="Toggle theme">🌗 Theme</button>
+      </nav>
+      <div class="meta">
+        <div><strong>Email:</strong> <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></div>
+        <div><strong>Location:</strong> San Marcos, TX</div>
+        <div style="margin-top:.6rem">
+          <a class="tag" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="tag" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="tag" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a>
+        </div>
+      </div>
+    </aside>
 
-<!-- Contact Section -->
-<div class="contact">
-    <h2>Let's Connect!</h2>
-    <p>Feel free to reach out via email at: <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></p>
-</div>
+    <!-- ===== Content ===== -->
+    <main class="content">
+      <!-- Hero -->
+      <section id="home" class="hero reveal">
+        <div class="lead">
+          <h1>Reliable Autonomy with <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">RL & MARL</span></h1>
+          <p>Graduate Research Assistant at Texas State University. I design decision-making for teams of robots with SLAM, Nav2, and data-efficient RL — targeting safe, robust autonomy on embedded platforms (Jetson/RPi).</p>
+          <div class="badges">
+            <span class="badge">Robotics</span>
+            <span class="badge">Reinforcement Learning</span>
+            <span class="badge">Multi-Agent Systems</span>
+            <span class="badge">Edge AI</span>
+          </div>
+          <div class="cta">
+            <a class="btn primary" href="#projects">See Projects</a>
+            <a class="btn" href="#pubs">View Publications</a>
+            <a class="btn" href="mailto:kazishifateee@gmail.com">Email Me</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><h3>6+</h3><p>Publications</p></div>
+            <div class="stat"><h3>3</h3><p>Robotics Systems</p></div>
+            <div class="stat"><h3>2</h3><p>Teaching Roles</p></div>
+          </div>
+        </div>
+        <div class="portrait">
+          <!-- Replace with your photo -->
+          <img src="images/profile.jpg" alt="Portrait of Kazi Sifatul Islam" />
+          <span class="blob" aria-hidden="true"></span>
+        </div>
+      </section>
 
-<!-- Footer -->
-<footer>
-    <p>© 2025 Kazi Sifatul Islam | All Rights Reserved</p>
-</footer>
+      <!-- Research Focus -->
+      <section id="focus" class="reveal">
+        <h2>Research Focus</h2>
+        <div class="grid-3" style="margin-top:.6rem">
+          <div class="card">
+            <h3>Data-Efficient RL</h3>
+            <p style="color:var(--muted)">Curriculum, model-based priors, and uncertainty-aware exploration to reduce sample complexity.</p>
+          </div>
+          <div class="card">
+            <h3>Safe MARL</h3>
+            <p style="color:var(--muted)">Decentralized policies with constraints and communication limits for multi-robot cooperation.</p>
+          </div>
+          <div class="card">
+            <h3>Sim-to-Real</h3>
+            <p style="color:var(--muted)">Domain randomization & runtime adaptation for deployment on TurtleBot4 and rovers.</p>
+          </div>
+        </div>
+      </section>
 
+      <!-- Skills -->
+      <section id="skills" class="reveal">
+        <h2>Skills</h2>
+        <div class="grid-3" style="margin-top:.6rem">
+          <div class="card">
+            <h3>Robotics</h3>
+            <p>ROS2 · Nav2 · SLAM · Gazebo/Isaac · TurtleBot4</p>
+            <div style="height:10px;border-radius:999px;border:1px solid var(--line);overflow:hidden"><span style="display:block;height:100%;width:90%;background:linear-gradient(90deg,var(--brand),var(--accent))"></span></div>
+          </div>
+          <div class="card">
+            <h3>RL / MARL</h3>
+            <p>PyTorch · RLlib · PPO · SAC · DQN · LfD</p>
+            <div style="height:10px;border-radius:999px;border:1px solid var(--line);overflow:hidden"><span style="display:block;height:100%;width:85%;background:linear-gradient(90deg,var(--brand),var(--accent))"></span></div>
+          </div>
+          <div class="card">
+            <h3>Edge AI</h3>
+            <p>Jetson Orin/Nano · TensorRT · ONNX · RPi</p>
+            <div style="height:10px;border-radius:999px;border:1px solid var(--line);overflow:hidden"><span style="display:block;height:100%;width:82%;background:linear-gradient(90deg,var(--brand),var(--accent))"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="reveal">
+        <h2>Projects</h2>
+        <div class="grid-3" style="margin-top:.6rem">
+          <article class="card">
+            <img src="images/project-animalcarebot.jpg" alt="AnimalCareBot rover" style="border-radius:12px; aspect-ratio:16/9; object-fit:cover">
+            <h3>AnimalCareBot — Autonomous Cattle Monitoring</h3>
+            <p style="color:var(--muted)">Rover with D435i + LiDAR; Nav2/SLAM; YOLO + tracker for behavior analytics; Jetson edge pipeline.</p>
+            <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+              <span class="tag">ROS2</span><span class="tag">SLAM</span><span class="tag">RL</span>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem">
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Demo</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="images/project-marl.jpg" alt="Multi-agent simulation" style="border-radius:12px; aspect-ratio:16/9; object-fit:cover">
+            <h3>MARL Navigation & Allocation</h3>
+            <p style="color:var(--muted)">Cooperative PPO with safety constraints; curriculum; partial observability; TurtleBot4 validation.</p>
+            <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+              <span class="tag">RLlib</span><span class="tag">TurtleBot4</span><span class="tag">Safety</span>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem">
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Paper</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="images/project-edgeai.jpg" alt="Edge inference" style="border-radius:12px; aspect-ratio:16/9; object-fit:cover">
+            <h3>Edge AI Perception</h3>
+            <p style="color:var(--muted)">Quantized YOLO + DeepSORT with TensorRT for 30+ FPS on Orin Nano. ROS2 nodes with zero-copy.</p>
+            <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+              <span class="tag">TensorRT</span><span class="tag">Jetson</span><span class="tag">ROS2</span>
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem">
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Benchmark</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section id="pubs" class="reveal">
+        <h2>Publications</h2>
+        <div class="grid-2" style="margin-top:.6rem">
+          <article class="card">
+            <h3>Low-Cost Sensor Fusion Framework for Organic Substance Classification</h3>
+            <p class="when">IEEE, 2025 — <a href="#" target="_blank" rel="noreferrer">PDF</a></p>
+            <details><summary>Show BibTeX</summary>
+<pre>@inproceedings{islam2025fusion,
+  author={Islam, K.S. and ...},
+  title={Low-Cost Sensor Fusion Framework for Organic Substance Classification},
+  booktitle={IEEE ...},
+  year={2025}
+}</pre>
+            </details>
+          </article>
+          <article class="card">
+            <h3>SLAM & Behavior Analytics for Autonomous Livestock Monitoring</h3>
+            <p class="when">Preprint, 2025 — <a href="#" target="_blank" rel="noreferrer">arXiv</a></p>
+            <p style="color:var(--muted)">End-to-end perception + autonomy for semi-structured outdoor environments.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="exp" class="reveal">
+        <h2>Experience</h2>
+        <div class="timeline" style="margin-top:.6rem">
+          <div class="t">
+            <h3>Graduate Research Assistant · Texas State University</h3>
+            <div class="when">2024 — Present</div>
+            <p style="color:var(--muted)">Autonomy stack for mobile robots; MARL navigation; edge deployment; reproducible experiments.</p>
+          </div>
+          <div class="t">
+            <h3>Graduate Instructional Assistant · Controls & Instrumentation</h3>
+            <div class="when">2024 — Present</div>
+            <p style="color:var(--muted)">Led labs, built rubrics, mentored students on sensing, control, and embedded programming.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="edu" class="reveal">
+        <h2>Education</h2>
+        <div class="timeline" style="margin-top:.6rem">
+          <div class="t">
+            <h3>M.S., Mechanical & Manufacturing Engineering — Texas State University</h3>
+            <div class="when">2024 — 2026 (expected)</div>
+            <p style="color:var(--muted)">Thesis: MARL for autonomous mobile robots; safe, data-efficient RL and sim-to-real.</p>
+          </div>
+          <div class="t">
+            <h3>B.Sc., Electrical & Electronic Engineering</h3>
+            <div class="when">2019 — 2023</div>
+            <p style="color:var(--muted)">Undergrad thesis on XRF-based e-waste analytics; conference presentation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section id="awards" class="reveal">
+        <h2>Awards & Honors</h2>
+        <ul class="card" role="list" style="margin-top:.6rem">
+          <li>Conference Travel Award (2025)</li>
+          <li>Graduate Research Fellowship (2024)</li>
+          <li>Best Poster (2023)</li>
+        </ul>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <div class="grid-2" style="margin-top:.6rem">
+          <div class="card">
+            <p><strong>Email:</strong> <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></p>
+            <p><strong>Social:</strong> <a class="tag" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a> · <a class="tag" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a> · <a class="tag" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a></p>
+            <p><strong>CV:</strong> <a href="docs/KaziSifatulIslam_CV.pdf" download>Download PDF</a></p>
+          </div>
+          <form class="card" name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact" />
+            <label for="name">Name</label>
+            <input id="name" name="name" required style="width:100%;padding:.6rem;border-radius:10px;border:1px solid var(--line);background:transparent;margin:.3rem 0 1rem">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required style="width:100%;padding:.6rem;border-radius:10px;border:1px solid var(--line);background:transparent;margin:.3rem 0 1rem">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="message" rows="5" required style="width:100%;padding:.6rem;border-radius:10px;border:1px solid var(--line);background:transparent;margin:.3rem 0 1rem"></textarea>
+            <button class="btn primary" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <footer>© <span id="year"></span> Kazi Sifatul Islam · All rights reserved</footer>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (sidebar + mobile)
+    const key='theme';
+    const apply=t=>document.documentElement.setAttribute('data-theme', t);
+    apply(localStorage.getItem(key)||'light');
+    document.getElementById('themeToggle').onclick = ()=>{
+      const next=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+      apply(next); localStorage.setItem(key,next);
+    };
+    document.getElementById('mTheme').onclick = ()=>{
+      const next=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+      apply(next); localStorage.setItem(key,next);
+    };
+
+    // Mobile menu
+    const mMenu=document.getElementById('mMenu');
+    const sidebar=document.getElementById('sidebar');
+    mMenu && (mMenu.onclick=()=> sidebar.classList.toggle('open'));
+
+    // Scrollspy + reveal
+    const links=[...document.querySelectorAll('.nav a')];
+    const sections=[...document.querySelectorAll('section[id]')];
+    const spy=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        const id=e.target.getAttribute('id');
+        const a=links.find(l=>l.getAttribute('href')==='#'+id);
+        if(a && e.isIntersecting){
+          links.forEach(x=>x.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px', threshold:[0,1]});
+    sections.forEach(s=>spy.observe(s));
+
+    const reveals=[...document.querySelectorAll('.reveal')];
+    const revObs=new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); revObs.unobserve(e.target); }});
+    },{threshold:.2});
+    reveals.forEach(r=>revObs.observe(r));
+
+    // Close sidebar on link click (mobile)
+    links.forEach(a=>a.addEventListener('click', ()=> sidebar.classList.remove('open')));
+  </script>
 </body>
 </html>
