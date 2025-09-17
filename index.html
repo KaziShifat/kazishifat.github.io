@@ -9,288 +9,192 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Roboto+Mono:wght@300;400;600&display=swap" rel="stylesheet">
 
-
   <style>
-
-    /* === Global Font Setup === */
-body {
-  font-family: 'Roboto Mono', monospace;
-  letter-spacing: 0.4px;
-  font-size: 16px;
-}
-
-h1, h2, h3, h4, h5, h6,
-.eyebrow, .welcome-banner, nav, .btn {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1.5px;
-  font-weight: 700;
-}
-
-/* Make hero headline pop */
-h1 {
-  font-size: clamp(2.4rem, 5vw, 3.5rem);
-  text-transform: uppercase;
-  background: linear-gradient(90deg, var(--term-green), var(--term-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Subheadings */
-h2 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: var(--term-cyan);
-}
-
-/* Hero tagline text */
-.lead {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 1rem;
-  color: var(--muted);
-}
-
-/* Buttons */
-.btn, .tab {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* Welcome banner text */
-.welcome-banner span {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
     :root{
       /* Linux terminal x AI neon palette */
-      --bg:#070b0a;            /* near-black */
-      --bg-2:#0b1110;          /* panel/window */
-      --ink:#e6f5ef;           /* primary text */
-      --muted:#8aa39b;         /* secondary text */
-      --term-green:#00ff84;    /* terminal green */
-      --term-cyan:#00e5ff;     /* cyan accent */
-      --term-mag:#c77dff;      /* magenta accent */
-      --term-amber:#f6d365;    /* amber */
-      --line:rgba(0,229,255,.18); /* borders */
-      --grid:rgba(0,255,132,.08);
-      --radius:14px;
-      --shadow:0 26px 60px rgba(0,0,0,.65);
-      --max:1180px;
+      --bg:#070b0a; --bg-2:#0b1110; --ink:#e6f5ef; --muted:#8aa39b;
+      --term-green:#00ff84; --term-cyan:#00e5ff; --term-mag:#c77dff; --term-amber:#f6d365;
+      --line:rgba(0,229,255,.18); --grid:rgba(0,255,132,.08);
+      --radius:14px; --shadow:0 26px 60px rgba(0,0,0,.65); --max:1180px;
+      --ring:rgba(77,163,255,.25); --chip:#172133; --arxiv:#ea4335; --doi:#2563eb; --disabled:#64748b;
     }
     [data-theme="light"]{
-      /* Optional light variant keeping Linux/AI accents */
       --bg:#f4fbf8; --bg-2:#ffffff; --ink:#0a1411; --muted:#566a63;
-      --term-green:#09b96b; --term-cyan:#168fb0; --term-mag:#8d4fc3; --term-amber:#b88a2e; --line:rgba(2,6,23,.12); --grid:rgba(9,185,107,.08);
+      --term-green:#09b96b; --term-cyan:#168fb0; --term-mag:#8d4fc3; --term-amber:#b88a2e;
+      --line:rgba(2,6,23,.12); --grid:rgba(9,185,107,.08);
+      --ring:rgba(37,99,235,.15);
     }
 
     *{box-sizing:border-box}
     html,body{margin:0}
     body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--ink);
-      line-height:1.65; overflow-x:hidden; background:var(--bg);
-      /* layered AI x Linux backdrop (lint-friendly) */
+      font-family:'Roboto Mono', ui-monospace, Menlo, Consolas, monospace;
+      color:var(--ink); line-height:1.65; overflow-x:hidden; background:var(--bg);
       background-image:
         radial-gradient(800px 420px at 90% 0%, rgba(199,125,255,.12), transparent 60%),
         radial-gradient(900px 520px at 0% 100%, rgba(0,255,132,.10), transparent 60%);
-      background-repeat:no-repeat;
-      background-attachment:fixed;
+      background-repeat:no-repeat; background-attachment:fixed;
+      font-size:16px; letter-spacing:.4px;
     }
+    h1,h2,h3,h4,h5,h6,.eyebrow,.welcome-banner,nav,.btn{
+      font-family:'Orbitron',sans-serif; letter-spacing:1.5px; font-weight:700;
+    }
+    h1{
+      font-size:clamp(2rem,6vw,3.4rem); text-transform:uppercase;
+      background:linear-gradient(90deg,var(--term-green),var(--term-cyan));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      margin:.6rem 0 .35rem; line-height:1.1;
+    }
+    h2{font-size:clamp(1.4rem,3.2vw,2rem); text-transform:uppercase; letter-spacing:1.2px; color:var(--term-cyan); margin:0 0 .35rem}
+    .lead{font-size:1rem; color:var(--muted)}
     a{color:inherit; text-decoration:none}
-    code,pre,kbd,samp{font-family:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace}
     img{max-width:100%; display:block}
-    .container{max-width:var(--max); margin:0 auto; padding:0 1.1rem}
+    .container{max-width:var(--max); margin:0 auto; padding:0 1rem}
 
-    /* ===== Subtle animated grid + scanlines ===== */
-    .grid-scan{
-      position:fixed; top:0; right:0; bottom:0; left:0; z-index:-1; pointer-events:none;
+    /* Background grid */
+    .grid-scan{position:fixed; inset:0; z-index:-1; pointer-events:none;
       background-image:
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px),
         linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size:36px 36px, 36px 36px, 100% 2px;
-      background-position:0 0, 0 0, 0 0;
-      opacity:.45;
-      animation:drift 28s linear infinite;
+      background-size:36px 36px,36px 36px,100% 2px; opacity:.45; animation:drift 28s linear infinite;
     }
-    @keyframes drift{ 50%{ background-position:220px 0, 0 220px, 0 0; } 100%{ background-position:0 0, 0 0, 0 0; } }
+    @keyframes drift{50%{background-position:220px 0,0 220px,0 0}100%{background-position:0 0,0 0,0 0}}
 
-/* === Welcome Banner === */
-.welcome-banner {
-  background: linear-gradient(270deg, var(--term-green), var(--term-cyan), var(--term-mag));
-  background-size: 600% 600%;
-  animation: gradientShift 8s ease infinite;
-  color: #05110e;
-  font-weight: 700;
-  text-align: center;
-  padding: 0.7rem 1rem;
-  font-size: 1.05rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-}
+    /* Welcome banner with typing */
+    .welcome-banner{background:linear-gradient(270deg,var(--term-green),var(--term-cyan),var(--term-mag));
+      background-size:600% 600%; animation:gradientShift 8s ease infinite;
+      color:#05110e; font-weight:700; text-align:center; padding:.7rem 1rem; font-size:1.05rem; letter-spacing:.5px;
+      box-shadow:0 4px 20px rgba(0,0,0,.4); position:relative; overflow:hidden;
+    }
+    #welcome-text::after{content:'|'; animation:blink .8s infinite; margin-left:3px}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @media (max-width:600px){ .welcome-banner{font-size:.95rem; padding:.6rem} }
 
-/* Blinking typing cursor */
-#welcome-text::after {
-  content: '|';
-  animation: blink 0.8s infinite;
-  margin-left: 3px;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-/* Subtle entrance animation */
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@media (max-width: 600px) {
-  .welcome-banner {
-    font-size: 0.95rem;
-    padding: 0.6rem;
-  }
-}
-
-
-
-/* Subtle entrance animation */
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Make it slightly smaller on mobile */
-@media (max-width: 600px) {
-  .welcome-banner {
-    font-size: 0.95rem;
-    padding: 0.6rem;
-  }
-}
-
-
-    /* ===== Top bar (Linux panel) ===== */
-    .panel{ position:sticky; top:0; z-index:50; -webkit-backdrop-filter:saturate(150%) blur(10px); backdrop-filter:saturate(150%) blur(10px); background:linear-gradient(180deg, rgba(11,17,16,.85), rgba(11,17,16,.35)); border-bottom:1px solid var(--line)}
-    .panel-inner{display:flex; align-items:center; justify-content:space-between; padding:.55rem .2rem}
-    .left, .right{display:flex; align-items:center; gap:.5rem}
-    .logo{display:flex; align-items:center; gap:.5rem; font-weight:800; letter-spacing:.2px}
+    /* Panel (top bar) */
+    .panel{position:sticky; top:0; z-index:50; backdrop-filter:saturate(150%) blur(10px);
+      background:linear-gradient(180deg, rgba(11,17,16,.85), rgba(11,17,16,.35)); border-bottom:1px solid var(--line)}
+    .panel-inner{display:flex; align-items:center; justify-content:space-between; padding:.55rem .2rem; gap:.5rem}
+    .left,.right{display:flex; align-items:center; gap:.5rem}
+    .logo{display:flex; align-items:center; gap:.5rem; font-weight:800; letter-spacing:.2px; white-space:nowrap}
     .logo svg{width:18px; height:18px; filter:drop-shadow(0 0 10px rgba(0,255,132,.45))}
-    .tab{padding:.4rem .7rem; border-radius:10px; color:var(--muted); border:1px solid transparent}
+    .tabs{display:flex; gap:.4rem; overflow:auto hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{padding:.4rem .7rem; border-radius:10px; color:var(--muted); border:1px solid transparent; flex:0 0 auto}
     .tab:hover,.tab.active{border-color:var(--line); background:var(--bg-2); color:var(--ink)}
-    .btn{display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .7rem; border-radius:10px; border:1px solid var(--line); background:var(--bg-2); color:var(--ink); font-weight:700}
-    .btn.primary{border:0; background:linear-gradient(90deg, var(--term-green), var(--term-cyan)); color:#05110e}
+    .btn{display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .7rem; border-radius:10px; border:1px solid var(--line); background:var(--bg-2); color:var(--ink); font-weight:700; text-transform:uppercase; letter-spacing:1px}
+    .btn.primary{border:0; background:linear-gradient(90deg,var(--term-green),var(--term-cyan)); color:#05110e}
     .toggle{background:transparent; border:1px solid var(--line); border-radius:10px; padding:.35rem .55rem; color:var(--muted); cursor:pointer}
 
-    /* ===== Hero ===== */
-    header.hero{padding:clamp(2.2rem,5vw,3.8rem) 0}
-    .hero-grid{display:grid; gap:1.2rem; grid-template-columns:1.15fr .85fr; align-items:center}
-    .eyebrow{ display:inline-flex; gap:.45rem; align-items:center; font-weight:800; color:var(--muted); padding:.28rem .6rem; border:1px dashed var(--line); border-radius:999px; background:linear-gradient(180deg, rgba(0,255,132,.08), rgba(0,229,255,.06)) }
-    h1{margin:.6rem 0 .35rem; font-size:clamp(2rem,4.2vw,3.1rem); line-height:1.1; font-weight:900; letter-spacing:.2px}
-    .mono{font-family:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; color:var(--term-green); font-weight:800}
-    .lead{color:var(--muted); max-width:64ch}
-    .actions{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:1rem}
-
-    /* Ubuntu window header themes per section */
-    .ubox{ background:var(--bg-2); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative }
-    .ubox .top{ display:flex; align-items:center; gap:.4rem; padding:.45rem .6rem; border-bottom:1px solid var(--line); color:var(--muted); background:linear-gradient(180deg, rgba(2,6,23,.2), rgba(2,6,23,0)); }
-    .dot{width:8px; height:10px; border-radius:80%}
-    .r{background:#ef4444}.y{background:#f59e0b}.g{background:#22c55e}
-
-    .portrait{ aspect-ratio: 4/5; object-fit:cover; width:60%; margin: 0 auto; border-radius:0 0 var(--radius) var(--radius); border-top:1px solid var(--line); box-shadow:0 8px 24px rgba(0,0,0,.45); display:block; }
-
     /* Sections */
-    section{padding:clamp(1.8rem,6vw,3rem) 0}
-    section>header h2{margin:0 0 .35rem; font-size:clamp(1.4rem,2.5vw,2rem)}
+    section{padding:clamp(1.6rem,5vw,3rem) 0}
     section>header p{margin:.2rem 0 1rem; color:var(--muted)}
 
+    /* Hero */
+    header.hero{padding:clamp(1.6rem,5vw,3.2rem) 0}
+    .hero-grid{display:grid; gap:1.2rem; grid-template-columns:1.1fr .9fr; align-items:center}
+    .eyebrow{display:inline-flex; gap:.45rem; align-items:center; font-weight:800; color:var(--muted);
+      padding:.28rem .6rem; border:1px dashed var(--line); border-radius:999px; background:linear-gradient(180deg, rgba(0,255,132,.08), rgba(0,229,255,.06))}
+    .ubox{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .ubox .top{display:flex; align-items:center; gap:.4rem; padding:.45rem .6rem; border-bottom:1px solid var(--line); color:var(--muted); background:linear-gradient(180deg, rgba(2,6,23,.2), rgba(2,6,23,0))}
+    /* Portrait card: smaller, 4:5, rounded rect */
+    .portrait-wrap{display:grid; place-items:center; padding:.8rem}
+    .portrait{
+      width:min(100%, 320px); aspect-ratio:4/5; border-radius:18px; object-fit:cover;
+      border:1px solid var(--line); box-shadow:0 8px 24px rgba(0,0,0,.45);
+    }
+
+    /* Responsive grids */
+    .grid-5{display:grid; gap:1rem; grid-template-columns:repeat(5,1fr)}
+    .grid-4{display:grid; gap:1rem; grid-template-columns:repeat(4,1fr)}
     .grid-3{display:grid; gap:1rem; grid-template-columns:repeat(3,1fr)}
     .grid-2{display:grid; gap:1rem; grid-template-columns:1fr 1fr}
-    .grid-4{display:grid; gap:1rem; grid-template-columns:repeat(4,1fr)}
-    .grid-5{display:grid; gap:1rem; grid-template-columns:repeat(5,1fr)}
-    .card{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow); position:relative}
+    .card{background:var(--bg-2); border:1px solid var(--line); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow)}
 
-    /* ===== New mesmerizing Skills layout ===== */
-    .skills-wrap{ display:grid; gap:1rem; grid-template-columns: 1.2fr 1fr; align-items:stretch }
-    .skill-panel{ position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:radial-gradient(1200px 300px at 120% -10%, rgba(0,229,255,.18), transparent 60%), linear-gradient(180deg, rgba(10,20,18,.6), rgba(10,20,18,.2)); box-shadow: var(--shadow); }
-    .skill-head{ display:flex; align-items:center; justify-content:space-between; padding:.7rem 1rem; border-bottom:1px dashed var(--line) }
-    .skill-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:.9rem; padding:1rem }
-    .skill{ display:flex; align-items:center; gap:.7rem; background:rgba(255,255,255,.02); border:1px solid var(--line); border-radius:12px; padding:.55rem .7rem }
-    .sicon{ width:26px; height:26px; border-radius:6px; display:grid; place-items:center; background:rgba(0,255,132,.08); border:1px solid rgba(0,255,132,.3) }
-    .sicon.cyan{ background:rgba(0,229,255,.08); border-color:rgba(0,229,255,.35)}
-    .sicon.mag{ background:rgba(199,125,255,.10); border-color:rgba(199,125,255,.35)}
-    .skill b{ display:block; font-size:.95rem }
-    .skill small{ color:var(--muted) }
+    @media (max-width:1080px){
+      .grid-5{grid-template-columns:repeat(3,1fr)}
+      .grid-4{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3,.grid-2{grid-template-columns:1fr}
+      .grid-5{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:560px){
+      .grid-5{grid-template-columns:1fr}
+    }
 
-    /* Progress bars */
-    .bar{height:10px; border-radius:999px; overflow:hidden; border:1px solid var(--line); background:rgba(255,255,255,.04); margin-top:.35rem}
-    .bar>span{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--term-green), var(--term-cyan)); transition:width 1s cubic-bezier(.2,.7,.2,1)}
+    /* Skills (alt) */
+    .skills-alt{background:var(--bg); color:var(--ink)}
+    .skills-alt .grid{display:grid; gap:1rem; grid-template-columns:repeat(12,1fr)}
+    .skills-alt .card{grid-column:span 12; background:linear-gradient(180deg, #0f1623, color-mix(in oklab, #0f1623, black 8%)); border:1px solid rgba(255,255,255,.05); box-shadow:0 0 0 1px var(--ring) inset}
+    @media(min-width:800px){ .skills-alt .card{grid-column:span 4} }
+    .chips{display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; padding:0; margin:.5rem 0 0}
+    .chip{background:#0f1623; border:1px solid rgba(255,255,255,.06); padding:.4rem .6rem; border-radius:999px; font-size:.92rem}
+    .pill{background:#0e2236; border:1px solid rgba(255,255,255,.06); color:#4da3ff; padding:.28rem .55rem; border-radius:999px; font-size:.8rem}
 
-    /* Publications grid (8 slots) */
-    .pub-card summary{cursor:pointer}
-    .pub-meta{ color:var(--muted); font-size:.9rem }
+    /* Projects */
+    .project-card .top{font-weight:700; margin-bottom:.35rem}
+    .project-card .actions{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem}
 
-    /* Projects (5+) */
-    .project-card .actions{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem }
-    .tag{font-size:.78rem; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:.15rem .5rem}
+    /* Publications (clean & oriented) */
+    .pubs-big{background:var(--bg); color:var(--ink)}
+    .filters{display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 1.25rem}
+    .filter{border:1px solid rgba(255,255,255,.08); background:#0f1623; color:var(--ink); padding:.4rem .7rem; border-radius:999px; cursor:pointer}
+    .filter.is-active{box-shadow:0 0 0 2px var(--ring)}
+    .pub-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .pub-card{grid-column:span 12; background:linear-gradient(180deg,var(--bg-2),color-mix(in oklab,var(--bg-2),black 6%)); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:1rem; box-shadow:0 0 0 1px var(--ring) inset}
+    .pub-card .head h3{margin:.2rem 0 .25rem; font-size:1.08rem}
+    .meta{color:var(--muted); font-size:.94rem}
+    .venue{font-weight:600}
+    .actions{display:flex; gap:.5rem; flex-wrap:wrap; margin:.4rem 0 .2rem}
+    .btn-mini{display:inline-flex; align-items:center; gap:.35rem; padding:.46rem .8rem; border-radius:12px; font-weight:700; border:1px solid transparent; letter-spacing:.2px}
+    .btn-arxiv{background:color-mix(in oklab, var(--arxiv), white 10%); color:#fff; border-color:color-mix(in oklab, var(--arxiv), black 18%)}
+    .btn-doi{background:color-mix(in oklab, var(--doi), white 10%); color:#fff; border-color:color-mix(in oklab, var(--doi), black 18%)}
+    .btn-disabled{background:var(--disabled); color:#e2e8f0; border-color:transparent; cursor:not-allowed}
 
-    /* Experience timeline (different theme) */
-    .timeline{ position:relative; padding-left:22px }
-    .timeline:before{ content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:linear-gradient(var(--term-mag), transparent) }
-    .t-item{ position:relative; margin:0 0 1rem; padding: .7rem .9rem .9rem; border-radius:12px; background:linear-gradient(180deg, rgba(199,125,255,.08), rgba(199,125,255,.02)); border:1px solid rgba(199,125,255,.25) }
-    .t-item:before{ content:""; position:absolute; left:-14px; top:14px; width:10px; height:10px; border-radius:50%; background:var(--term-mag); box-shadow:0 0 0 3px rgba(199,125,255,.25) }
+    .hero-img{width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden; background:#0a1020; margin:.5rem 0}
+    .hero-img img{width:100%; height:100%; object-fit:cover}
 
-    /* About section (pane set) */
-    .about-grid{ display:grid; gap:1rem; grid-template-columns:repeat(3,1fr) }
-    .about-card{ padding:1rem; border-radius:12px; background:linear-gradient(180deg, rgba(0,255,132,.06), rgba(0,255,132,.02)); border:1px dashed rgba(0,255,132,.35) }
+    .gallery .thumbs{display:flex; gap:.5rem; overflow-x:auto; padding:.3rem 0 .1rem; scrollbar-width:thin}
+    .gallery .thumbs img{width:160px; height:100px; object-fit:cover; border-radius:10px; cursor:pointer; border:2px solid transparent; flex:0 0 auto}
+    .gallery .thumbs img[aria-current="true"]{border-color:var(--term-cyan)}
 
-    /* Extracurricular gallery */
-    .gallery{ display:grid; gap:.8rem; grid-template-columns:repeat(4,1fr) }
-    .gallery img{ width:100%; height:180px; object-fit:cover; border-radius:12px; border:1px solid var(--line) }
+    .stack figure{width:100%; border-radius:14px; overflow:hidden; background:#0a1020; margin:.5rem 0}
 
-    /* Table */
-    table{width:100%; border-collapse:collapse; background:rgba(255,255,255,.02); border:1px solid var(--line); border-radius:14px; overflow:hidden}
-    th,td{padding:.65rem .75rem; border-bottom:1px solid var(--line); text-align:left}
-    th{color:var(--muted); font-weight:600}
+    details.bib{margin-top:.35rem; background:rgba(255,255,255,.03); border:1px dashed rgba(255,255,255,.12); border-radius:12px; padding:.45rem .6rem}
+    details[open]{box-shadow:0 0 0 2px var(--ring)}
+    pre{white-space:pre-wrap; font-size:.86rem; overflow-x:auto}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:22px}
+    .timeline:before{content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:linear-gradient(var(--term-mag), transparent)}
+    .t-item{position:relative; margin:0 0 1rem; padding:.7rem .9rem .9rem; border-radius:12px; background:linear-gradient(180deg, rgba(199,125,255,.08), rgba(199,125,255,.02)); border:1px solid rgba(199,125,255,.25)}
+    .t-item:before{content:""; position:absolute; left:-14px; top:14px; width:10px; height:10px; border-radius:50%; background:var(--term-mag); box-shadow:0 0 0 3px rgba(199,125,255,.25)}
+
+    /* Gallery */
+    .gallery-grid{display:grid; gap:.8rem; grid-template-columns:repeat(4,1fr)}
+    .gallery-grid img{width:100%; height:180px; object-fit:cover; border-radius:12px; border:1px solid var(--line)}
+    @media (max-width:980px){ .gallery-grid{grid-template-columns:repeat(2,1fr)} }
 
     /* Footer */
     footer{border-top:1px solid var(--line); color:var(--muted); text-align:center; padding:1.6rem 0 2.6rem}
-
-    /* Responsive */
-    @media (max-width:1080px){ .grid-5{grid-template-columns:repeat(3,1fr)} .grid-4{grid-template-columns:repeat(3,1fr)} }
-    @media (max-width:980px){ .hero-grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr} .grid-2{grid-template-columns:1fr} .skills-wrap{grid-template-columns:1fr} .about-grid{grid-template-columns:1fr} .gallery{grid-template-columns:repeat(2,1fr)} }
   </style>
 </head>
 <body>
   <div class="grid-scan" aria-hidden="true"></div>
 
   <!-- Welcome Banner -->
-<div class="welcome-banner">
-  <span>Welcome to my Portfolio</span>
-</div>
-
+  <div class="welcome-banner" aria-live="polite">
+    <span id="welcome-text">👋 Welcome to my Portfolio</span>
+  </div>
 
   <!-- Panel / top bar -->
   <nav class="panel">
     <div class="container panel-inner">
-      <div class="left">
+      <div class="left" style="min-width:0">
         <span class="logo">
-          <!-- Tiny penguin/circuit mark -->
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 3c3.5 0 6 2.4 6 6.4 0 2.1-.8 3.3-.8 5.6 0 2.3-1.8 4-5.2 4s-5.2-1.7-5.2-4c0-2.3-.8-3.5-.8-5.6C6 5.4 8.5 3 12 3Z" stroke="var(--term-green)" stroke-width="1.4"/>
             <circle cx="9.5" cy="9.2" r="1" fill="var(--term-cyan)"/>
@@ -299,15 +203,17 @@ h2 {
           </svg>
           Kazi Sifatul Islam
         </span>
-        <a class="tab active" href="#home">Home</a>
-        <a class="tab" href="#skills">Skills</a>
-        <a class="tab" href="#projects">Projects</a>
-        <a class="tab" href="#pubs">Publications</a>
-        <a class="tab" href="#exp">Experience</a>
-        <a class="tab" href="#about">About</a>
-        <a class="tab" href="#extra">Extracurricular</a>
-        <a class="tab" href="#bench">Benchmarks</a>
-        <a class="tab" href="#contact">Contact</a>
+        <div class="tabs" role="tablist" aria-label="Primary">
+          <a class="tab active" href="#home">Home</a>
+          <a class="tab" href="#skills">Skills</a>
+          <a class="tab" href="#projects">Projects</a>
+          <a class="tab" href="#pubs">Publications</a>
+          <a class="tab" href="#exp">Experience</a>
+          <a class="tab" href="#about">About</a>
+          <a class="tab" href="#extra">Extracurricular</a>
+          <!-- Removed Benchmarks -->
+          <a class="tab" href="#contact">Contact</a>
+        </div>
       </div>
       <div class="right">
         <button class="toggle" id="themeBtn" aria-label="Toggle theme">🌗</button>
@@ -321,195 +227,79 @@ h2 {
   <header id="home" class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow"> Robotics • Reinforcement Learning • Edge AI• Smart Grid</span>
-        <h1><span class="mono">Curiosity</span>,  <span class="mono">Innovation</span>, <span class="mono">Impact</span></h1>
-        <p class="lead">Hi, I am Kazi Sifatul Islam, MS student and Graduate Research Assistant at Responsible AI(RAI) Lab at Texas State University. My ongoing research aligned with reinforcement learning for robotics, with a focus on multi-agent decision making, safe autonomy, and robust perception. I integrate ML/DL, and Computer Vision approaches with edge AI platforms (MCUs, NVidia Jetson, Raspberry Pi) to develop scalable, resource-aware systems for real time inferencing.</p>
-        <p><strong><em>I am seeking a Ph.D. position starting Fall 2026, where I can further explore aligned topics, deepen my expertise, and contribute to advancing trustworthy application of Artificial ntelligence.</em></strong></p>
-
+        <span class="eyebrow">Robotics • Reinforcement Learning • Edge AI • Smart Grid</span>
+        <h1><span class="mono">Curiosity</span>, <span class="mono">Innovation</span>, <span class="mono">Impact</span></h1>
+        <p class="lead">Hi, I am Kazi Sifatul Islam, MS student and Graduate Research Assistant at Responsible AI (RAI) Lab at Texas State University. My ongoing research aligns with reinforcement learning for robotics, with a focus on multi-agent decision making, safe autonomy, and robust perception. I integrate ML/DL and Computer Vision with edge AI platforms (MCUs, NVIDIA Jetson, Raspberry Pi) to develop scalable, resource-aware systems for real-time inferencing.</p>
+        <p><strong><em>I am seeking a Ph.D. position starting Fall 2026 to deepen my work and contribute to trustworthy AI deployment.</em></strong></p>
         <div class="actions">
           <a class="btn primary" href="#projects">See Projects</a>
           <a class="btn" href="#skills">Skills</a>
           <a class="btn" href="mailto:kazishifateee@gmail.com">Email</a>
         </div>
       </div>
-      <!-- Replaced tiles with portrait window -->
+
       <div class="ubox">
-        <div class="top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>Kazi Sifatul Islam</div>
-        <img class="portrait" src="My_Image.jpg" alt="Portrait of Kazi Sifatul Islam"/>
+        <div class="top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>Portrait</div>
+        <div class="portrait-wrap">
+          <!-- Tip: rename to a compressed WebP (e.g., My_Image.webp) for smaller bytes -->
+          <img class="portrait" src="My_Image.jpg" alt="Portrait of Kazi Sifatul Islam" width="320" height="400" loading="lazy" decoding="async"/>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ALT SKILLS SECTION (Accessible, responsive, no frameworks) -->
-<section id="skills" class="skills-alt">
-  <div class="container">
-    <header class="section-head">
-      <h2>Core Technical Skills</h2>
-      <p>Systems thinking • reproducible builds • clean interfaces</p>
-    </header>
+  <!-- SKILLS (ALT) -->
+  <section id="skills" class="skills-alt">
+    <div class="container">
+      <header class="section-head">
+        <h2>Core Technical Skills</h2>
+        <p>Systems thinking • reproducible builds • clean interfaces</p>
+      </header>
 
-    <!-- Category cards with compact badges (no self-rated bars) -->
-    <div class="grid">
-      <article class="card">
-        <div class="card-head">
-          <h3>Robotics & Autonomy</h3>
-          <span class="tag">ROS2 · Nav2 · SLAM</span>
-        </div>
-        <ul class="chips" aria-label="Key tools and frameworks for Robotics & Autonomy">
-          <li class="chip">ROS2/TF</li>
-          <li class="chip">Nav2</li>
-          <li class="chip">Cartographer</li>
-          <li class="chip">ORB-SLAM</li>
-          <li class="chip">Isaac Sim</li>
-          <li class="chip">Gazebo</li>
-          <li class="chip">DeepSORT</li>
-          <li class="chip">YOLO</li>
-        </ul>
-        <div class="footnotes">
-          <span class="pill">Perception</span>
-          <span class="pill">Tracking</span>
-          <span class="pill">Mapping</span>
-        </div>
-      </article>
+      <div class="grid">
+        <article class="card">
+          <div class="card-head">
+            <h3>Robotics & Autonomy</h3>
+            <span class="tag">ROS2 · Nav2 · SLAM</span>
+          </div>
+          <ul class="chips" aria-label="Key tools and frameworks for Robotics & Autonomy">
+            <li class="chip">ROS2/TF</li><li class="chip">Nav2</li><li class="chip">Cartographer</li><li class="chip">ORB-SLAM</li>
+            <li class="chip">Isaac Sim</li><li class="chip">Gazebo</li><li class="chip">DeepSORT</li><li class="chip">YOLO</li>
+          </ul>
+          <div class="footnotes"><span class="pill">Perception</span><span class="pill">Tracking</span><span class="pill">Mapping</span></div>
+        </article>
 
-      <article class="card">
-        <div class="card-head">
-          <h3>Reinforcement Learning</h3>
-          <span class="tag">PyTorch · RLlib</span>
-        </div>
-        <ul class="chips" aria-label="Algorithms and tooling for RL">
-          <li class="chip">PPO</li>
-          <li class="chip">SAC</li>
-          <li class="chip">DQN</li>
-          <li class="chip">MARL</li>
-          <li class="chip">Sim2Real</li>
-          <li class="chip">Curriculum</li>
-          <li class="chip">Domain Rand.</li>
-        </ul>
-        <div class="footnotes">
-          <span class="pill">Policy Gradients</span>
-          <span class="pill">Multi-Agent</span>
-          <span class="pill">Safety</span>
-        </div>
-      </article>
+        <article class="card">
+          <div class="card-head">
+            <h3>Reinforcement Learning</h3>
+            <span class="tag">PyTorch · RLlib</span>
+          </div>
+          <ul class="chips" aria-label="Algorithms and tooling for RL">
+            <li class="chip">PPO</li><li class="chip">SAC</li><li class="chip">DQN</li><li class="chip">MARL</li>
+            <li class="chip">Sim2Real</li><li class="chip">Curriculum</li><li class="chip">Domain Rand.</li>
+          </ul>
+          <div class="footnotes"><span class="pill">Policy Gradients</span><span class="pill">Multi-Agent</span><span class="pill">Safety</span></div>
+        </article>
 
-      <article class="card">
-        <div class="card-head">
-          <h3>Edge AI & Deployment</h3>
-          <span class="tag">TensorRT · ONNX · Docker</span>
-        </div>
-        <ul class="chips" aria-label="Platforms and deployment targets">
-          <li class="chip">Jetson Orin</li>
-          <li class="chip">Jetson Nano</li>
-          <li class="chip">Raspberry Pi</li>
-          <li class="chip">TensorRT</li>
-          <li class="chip">ONNX</li>
-          <li class="chip">Docker</li>
-          <li class="chip">CI/CD</li>
-        </ul>
-        <div class="footnotes">
-          <span class="pill">Quantization</span>
-          <span class="pill">Throughput</span>
-          <span class="pill">Latency</span>
-        </div>
-      </article>
-    </div>
-
-    <!-- Optional: compact proficiency dots without numeric bars -->
-    <div class="matrix">
-      <div class="matrix-row" role="listitem" aria-label="ROS2 proficiency">
-        <span class="matrix-skill">ROS2</span>
-        <span class="dots" aria-hidden="true">
-          <i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot"></i>
-        </span>
-        <span class="sr-only">4 out of 5</span>
-      </div>
-      <div class="matrix-row" role="listitem" aria-label="SLAM proficiency">
-        <span class="matrix-skill">SLAM</span>
-        <span class="dots" aria-hidden="true">
-          <i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot"></i><i class="dot"></i>
-        </span>
-        <span class="sr-only">3 out of 5</span>
-      </div>
-      <div class="matrix-row" role="listitem" aria-label="RL/MARL proficiency">
-        <span class="matrix-skill">RL / MARL</span>
-        <span class="dots" aria-hidden="true">
-          <i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot"></i>
-        </span>
-        <span class="sr-only">4 out of 5</span>
-      </div>
-      <div class="matrix-row" role="listitem" aria-label="Edge AI proficiency">
-        <span class="matrix-skill">Edge AI</span>
-        <span class="dots" aria-hidden="true">
-          <i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i><i class="dot filled"></i>
-        </span>
-        <span class="sr-only">5 out of 5</span>
+        <article class="card">
+          <div class="card-head">
+            <h3>Edge AI & Deployment</h3>
+            <span class="tag">TensorRT · ONNX · Docker</span>
+          </div>
+          <ul class="chips" aria-label="Platforms and deployment targets">
+            <li class="chip">Jetson Orin</li><li class="chip">Jetson Nano</li><li class="chip">Raspberry Pi</li>
+            <li class="chip">TensorRT</li><li class="chip">ONNX</li><li class="chip">Docker</li><li class="chip">CI/CD</li>
+          </ul>
+          <div class="footnotes"><span class="pill">Quantization</span><span class="pill">Throughput</span><span class="pill">Latency</span></div>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  :root{
-    --bg: #0b0f14;
-    --card: #111927;
-    --muted: #9fb3c8;
-    --text: #e6eef8;
-    --accent: #4da3ff;
-    --accent-2: #22d3ee;
-    --chip: #0f1623;
-    --pill: #0e2236;
-    --ring: rgba(77,163,255,.35);
-  }
-  @media (prefers-color-scheme: light){
-    :root{ --bg:#f7fafc; --card:#ffffff; --muted:#4a5568; --text:#111827; --chip:#f1f5f9; --pill:#eef2ff; --ring:rgba(29,78,216,.15);}  }
-
-  .skills-alt{ background: var(--bg); color: var(--text); padding: 4rem 1rem; }
-  .skills-alt .container{ max-width: 1100px; margin: 0 auto; }
-  .section-head h2{ font-size: clamp(1.6rem, 2.5vw, 2rem); margin: 0 0 .25rem }
-  .section-head p{ color: var(--muted); margin: 0 0 1.5rem }
-
-  .grid{ display: grid; gap: 1rem; grid-template-columns: repeat(12,1fr); }
-  .card{ grid-column: span 12; background: linear-gradient(180deg, var(--card), color-mix(in oklab, var(--card), black 8%)); border: 1px solid rgba(255,255,255,.05); border-radius: 14px; padding: 1rem; box-shadow: 0 0 0 1px var(--ring) inset; }
-  @media(min-width: 800px){ .card{ grid-column: span 4; } }
-
-  .card-head{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; margin-bottom:.5rem }
-  .card h3{ font-size: 1.05rem; margin: 0 }
-  .tag{ color: var(--muted); font-size:.9rem }
-
-  .chips{ display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; padding:0; margin:.5rem 0 0 }
-  .chip{ background: var(--chip); border:1px solid rgba(255,255,255,.06); padding:.4rem .6rem; border-radius: 999px; font-size:.92rem }
-
-  .footnotes{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem }
-  .pill{ background: var(--pill); border:1px solid rgba(255,255,255,.06); color: var(--accent); padding:.28rem .55rem; border-radius:999px; font-size:.8rem }
-
-  /* Compact proficiency matrix (optional) */
-  .matrix{ display:grid; gap:.5rem; margin-top:1.25rem }
-  .matrix-row{ display:flex; align-items:center; justify-content:space-between; background: var(--card); border:1px dashed rgba(255,255,255,.08); border-radius:10px; padding:.5rem .75rem }
-  .matrix-skill{ font-weight:600 }
-  .dots .dot{ display:inline-block; width:.55rem; height:.55rem; border-radius:50%; border:1.5px solid var(--accent); margin-left:.25rem; opacity:.6 }
-  .dots .dot.filled{ background: linear-gradient(180deg, var(--accent), var(--accent-2)); opacity:1 }
-
-  /* Subtle entrance */
-  @media(prefers-reduced-motion:no-preference){
-    .card{ transform: translateY(6px); opacity:0; animation: rise .6s ease forwards; }
-    .card:nth-child(2){ animation-delay:.08s }
-    .card:nth-child(3){ animation-delay:.16s }
-  }
-  @keyframes rise{ to{ transform:none; opacity:1 } }
-
-  /* Accessibility helpers */
-  .sr-only{ position:absolute; left:-9999px }
-</style>
-
-
-  <!-- PROJECTS (5+) themed as cyan terminals) -->
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
-      <header>
-        <h2>Ongoing Projects</h2>
-        <!-- <p>Linux-flavored autonomy, perception, and deployment.</p> -->
-      </header>
+      <header><h2>Ongoing Projects</h2></header>
       <div class="grid-5">
         <article class="card project-card">
           <div class="top">Safe Reinforcement Learning Framework for Autonomous Navigation and Mapping with TurtleBot</div>
@@ -524,11 +314,11 @@ h2 {
         <article class="card project-card">
           <div class="top">Edge AI Perception</div>
           <p class="lead">Quantized YOLO + DeepSORT with TensorRT (30+ FPS) on Orin Nano. ROS2 nodes with zero-copy.</p>
-          <div class="actions"><a class="btn" href="#bench">Benchmark</a><a class="btn" href="#" target="_blank" rel="noreferrer">Code</a></div>
+          <div class="actions"><a class="btn" href="#pubs">Benchmark</a><a class="btn" href="#" target="_blank" rel="noreferrer">Code</a></div>
         </article>
         <article class="card project-card">
           <div class="top">Auxetic Beam Dynamics</div>
-          <p class="lead">COMSOL + NI-DAQ driven vibration experiments, model updating, and energy harvesting analysis.</p>
+          <p class="lead">COMSOL + NI-DAQ vibration experiments, model updating, and energy harvesting analysis.</p>
           <div class="actions"><a class="btn" href="#" target="_blank" rel="noreferrer">Poster</a><a class="btn" href="#" target="_blank" rel="noreferrer">Code</a></div>
         </article>
         <article class="card project-card">
@@ -540,168 +330,98 @@ h2 {
     </div>
   </section>
 
-  <!-- PUBLICATIONS — Big hero images + image stacks + arXiv/DOI emphasis -->
-<section id="pubs" class="pubs-big">
-  <div class="container">
-    <header class="section-head">
-      <h2>Publications</h2>
-      <p>Selected peer‑reviewed outputs & preprints. Large figures supported per item.</p>
-      <div class="filters" aria-label="Filter publications">
-        <button class="filter is-active" data-filter="all">All</button>
-        <button class="filter" data-filter="conf">Conference</button>
-        <button class="filter" data-filter="journal">Journal</button>
-        <button class="filter" data-filter="preprint">Preprint</button>
-        <button class="filter" data-filter="poster">Poster</button>
-      </div>
-    </header>
-
-    <div class="pub-grid">
-
-      <!-- GALLERY MODE: big hero + thumbnail strip -->
-      <article class="pub-card gallery" data-type="conf">
-        <header class="head">
-          <h3>Hybrid ML–RL for Smart Grid Stability Prediction & Optimized Control</h3>
-          <p class="meta"><span class="venue">IEEE SWC 2025</span> <span class="status">In press</span></p>
-        </header>
-        <div class="gallery-strip" aria-label="Additional figures">
-          <img src="ML_RL Workflow.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig1.jpg" alt="Ablation results" aria-current="true">
-          <img src="Agent Env.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig2.jpg" alt="Control policy diagram">
-          <img src="ML Stage.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig3.jpg" alt="Training curves">
-          <img src="Table III.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig4.jpg" alt="Stability margins heatmap">
+  <!-- PUBLICATIONS -->
+  <section id="pubs" class="pubs-big">
+    <div class="container">
+      <header class="section-head">
+        <h2>Publications</h2>
+        <p>Selected peer-reviewed outputs & preprints. Large figures supported per item.</p>
+        <div class="filters" aria-label="Filter publications">
+          <button class="filter is-active" data-filter="all">All</button>
+          <button class="filter" data-filter="conf">Conference</button>
+          <button class="filter" data-filter="journal">Journal</button>
+          <button class="filter" data-filter="preprint">Preprint</button>
+          <button class="filter" data-filter="poster">Poster</button>
         </div>
-        <div class="actions">
-          <a class="btn btn-arxiv" href="https://arxiv.org/abs/2508.19541" target="_blank" rel="noreferrer">arXiv</a>
-        </div>
-        <details class="bib"><summary>Show BibTeX</summary>
+      </header>
+
+      <div class="pub-grid">
+
+        <!-- Gallery card -->
+        <article class="pub-card gallery" data-type="conf">
+          <header class="head">
+            <h3>Hybrid ML–RL for Smart Grid Stability Prediction & Optimized Control</h3>
+            <p class="meta"><span class="venue">IEEE SWC 2025</span> <span class="status">In press</span></p>
+          </header>
+
+          <!-- Big hero image -->
+          <figure class="hero-img">
+            <img src="ML_RL Workflow.jpg" alt="Workflow overview" loading="lazy" decoding="async">
+          </figure>
+
+          <!-- Thumbnails -->
+          <div class="thumbs" aria-label="Additional figures">
+            <img src="ML_RL Workflow.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig1.jpg" alt="Ablation results" aria-current="true" loading="lazy" decoding="async">
+            <img src="Agent Env.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig2.jpg" alt="Control policy diagram" loading="lazy" decoding="async">
+            <img src="ML Stage.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig3.jpg" alt="Training curves" loading="lazy" decoding="async">
+            <img src="Table III.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig4.jpg" alt="Stability heatmap" loading="lazy" decoding="async">
+          </div>
+
+          <div class="actions">
+            <a class="btn-mini btn-arxiv" href="https://arxiv.org/abs/2508.19541" target="_blank" rel="noreferrer">arXiv</a>
+          </div>
+
+          <details class="bib"><summary>Show BibTeX</summary>
 <pre>@article{islam2025hybrid,
   title={Hybrid ML--RL for Smart Grid Stability Prediction and Optimized Control},
   author={Islam, K.S. and Dutta, A. and Mruthyunjaya, S.},
   journal={IEEE Smart World Congress}, year={2025}
 }</pre>
-        </details>
-      </article>
+          </details>
+        </article>
 
-      <!-- STACK MODE: vertical image stack (fig-heavy) -->
-      <article class="pub-card stack" data-type="preprint">
-        <header class="head">
-          <h3>From Tiny Machine Learning to Tiny Deep Learning: A Survey</h3>
-          <p class="meta"><span class="venue">arXiv</span> <span class="status">2025</span></p>
-        </header>
-        <div class="actions">
-          <a class="btn btn-arxiv" href="https://arxiv.org/abs/2506.18927" target="_blank" rel="noreferrer">arXiv</a>
-        </div>
-        <figure class="stack-img"><img src="/assets/pubs/tiny-dl-fig1.jpg" alt="TinyDL taxonomy diagram"></figure>
-        <figure class="stack-img"><img src="/assets/pubs/tiny-dl-fig2.jpg" alt="Benchmark comparison"></figure>
-        <figure class="stack-img"><img src="/assets/pubs/tiny-dl-fig3.jpg" alt="Memory vs accuracy"></figure>
-      </article>
+        <!-- Stack card -->
+        <article class="pub-card stack" data-type="preprint">
+          <header class="head">
+            <h3>From Tiny Machine Learning to Tiny Deep Learning: A Survey</h3>
+            <p class="meta"><span class="venue">arXiv</span> <span class="status">2025</span></p>
+          </header>
+          <div class="actions">
+            <a class="btn-mini btn-arxiv" href="https://arxiv.org/abs/2506.18927" target="_blank" rel="noreferrer">arXiv</a>
+          </div>
+          <figure><img src="/assets/pubs/tiny-dl-fig1.jpg" alt="TinyDL taxonomy" loading="lazy" decoding="async"></figure>
+          <figure><img src="/assets/pubs/tiny-dl-fig2.jpg" alt="Benchmark comparison" loading="lazy" decoding="async"></figure>
+          <figure><img src="/assets/pubs/tiny-dl-fig3.jpg" alt="Memory vs accuracy" loading="lazy" decoding="async"></figure>
+        </article>
 
-      <!-- STANDARD CARD (no extra images) -->
-      <article class="pub-card" data-type="conf preprint">
-        <header class="head">
-          <h3>Mentalic Net: RAG‑based Conversational AI & Evaluation for Mental Health Support</h3>
-          <p class="meta"><span class="venue">ISEMV 2025</span> <span class="status">Accepted</span></p>
-        </header>
-        <div class="actions">
-          <a class="btn btn-arxiv" href="https://arxiv.org/abs/2509.04456" target="_blank" rel="noreferrer">arXiv</a>
-        </div>
-      </article>
+        <!-- Minimal card -->
+        <article class="pub-card" data-type="conf preprint">
+          <header class="head">
+            <h3>Mentalic Net: RAG-based Conversational AI & Evaluation for Mental Health Support</h3>
+            <p class="meta"><span class="venue">ISEMV 2025</span> <span class="status">Accepted</span></p>
+          </header>
+          <div class="actions">
+            <a class="btn-mini btn-arxiv" href="https://arxiv.org/abs/2509.04456" target="_blank" rel="noreferrer">arXiv</a>
+          </div>
+        </article>
 
-      <!-- JOURNAL with big single image -->
-      <article class="pub-card hero-only" data-type="journal">
-        <header class="head">
-          <h3>Resilience Analysis of a PV/Battery System for Health Care Centers in Rohingya Refugee Camp</h3>
-          <p class="meta"><span class="venue">Energy (Elsevier)</span> <span class="status">2023</span></p>
-        </header>
-        <figure class="hero"><img src="/assets/pubs/rohingya-pv-hero.jpg" alt="PV/Battery resilience figure"></figure>
-        <div class="actions">
-          <a class="btn btn-doi" href="https://doi.org/10.1016/j.energy.2022.125634" target="_blank" rel="noreferrer">DOI</a>
-        </div>
-      </article>
+        <!-- Hero-only journal -->
+        <article class="pub-card hero-only" data-type="journal">
+          <header class="head">
+            <h3>Resilience Analysis of a PV/Battery System for Health Care Centers in Rohingya Refugee Camp</h3>
+            <p class="meta"><span class="venue">Energy (Elsevier)</span> <span class="status">2023</span></p>
+          </header>
+          <figure class="hero-img"><img src="/assets/pubs/rohingya-pv-hero.jpg" alt="PV/Battery resilience figure" loading="lazy" decoding="async"></figure>
+          <div class="actions">
+            <a class="btn-mini btn-doi" href="https://doi.org/10.1016/j.energy.2022.125634" target="_blank" rel="noreferrer">DOI</a>
+          </div>
+        </article>
 
-      <!-- Add the rest of your publications here, choose one of: .gallery, .stack, .hero-only, or plain .pub-card -->
-
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  :root{
-    --bg:#0b0f14; --card:#0f1623; --text:#e6eef8; --muted:#9fb3c8; --ring:rgba(77,163,255,.25);
-    --chip:#172133; --accent:#ec4899; --arxiv:#ea4335; --doi:#2563eb; --disabled:#64748b;
-  }
-  @media(prefers-color-scheme:light){
-    :root{ --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#475569; --ring:rgba(37,99,235,.15); }
-  }
-  .pubs-big{ background:var(--bg); color:var(--text); padding:3rem 1rem }
-  .pubs-big .container{ max-width:1100px; margin:0 auto }
-  .section-head h2{ margin:0 0 .25rem; font-size:clamp(1.6rem,2.6vw,2rem)}
-  .section-head p{ margin:0 0 1rem; color:var(--muted)}
-  .filters{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 1.25rem }
-  .filter{ border:1px solid rgba(255,255,255,.08); background:var(--chip); color:var(--text); padding:.4rem .7rem; border-radius:999px; cursor:pointer }
-  .filter.is-active{ box-shadow:0 0 0 2px var(--ring) }
-
-  .pub-grid{ display:grid; grid-template-columns: repeat(12,1fr); gap:1rem }
-  .pub-card{ grid-column: span 12; background:linear-gradient(180deg,var(--card),color-mix(in oklab,var(--card),black 6%)); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:1rem; box-shadow:0 0 0 1px var(--ring) inset }
-  .pub-card .head h3{ margin:.2rem 0 .25rem; font-size:1.1rem }
-  .meta{ color:var(--muted); font-size:.94rem }
-  .venue{ font-weight:600 }
-
-  /* HERO IMAGE (big) */
-  .hero{ width:100%; aspect-ratio: 16/9; border-radius:14px; overflow:hidden; background:#0a1020; margin:.5rem 0 }
-  .hero img{ width:100%; height:100%; object-fit:cover; display:block }
-
-  /* GALLERY MODE */
-  .gallery .gallery-strip{ display:flex; gap:.5rem; overflow-x:auto; padding:.3rem 0 .1rem; scrollbar-width:thin }
-  .gallery .gallery-strip img{ width:160px; height:100px; object-fit:cover; border-radius:10px; cursor:pointer; border:2px solid transparent }
-  .gallery .gallery-strip img[aria-current="true"]{ border-color: var(--accent) }
-
-  /* STACK MODE */
-  .stack .stack-img{ width:100%; border-radius:14px; overflow:hidden; background:#0a1020; margin:.5rem 0 }
-  .stack .stack-img img{ width:100%; height:auto; display:block }
-
-  .actions{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.25rem 0 .2rem }
-  .btn{ display:inline-flex; align-items:center; gap:.35rem; padding:.5rem .8rem; border-radius:12px; font-weight:700; border:1px solid transparent; text-decoration:none; letter-spacing:.2px }
-  .btn-arxiv{ background:color-mix(in oklab, var(--arxiv), white 10%); color:#fff; border-color:color-mix(in oklab, var(--arxiv), black 18%) }
-  .btn-doi{ background:color-mix(in oklab, var(--doi), white 10%); color:#fff; border-color:color-mix(in oklab, var(--doi), black 18%) }
-  .btn-disabled{ background:var(--disabled); color:#e2e8f0; border-color:transparent; cursor:not-allowed }
-
-  details.bib{ margin-top:.35rem; background:rgba(255,255,255,.03); border:1px dashed rgba(255,255,255,.12); border-radius:12px; padding:.45rem .6rem }
-  details[open]{ box-shadow:0 0 0 2px var(--ring) }
-  pre{ white-space:pre-wrap; font-size:.86rem; overflow-x:auto }
-
-  @media(max-width:700px){ .hero{ aspect-ratio: 16/10 } }
-</style>
-
-<script>
-  // Filters
-  (function(){
-    const buttons = document.querySelectorAll('.filters .filter');
-    const cards = document.querySelectorAll('.pub-card');
-    buttons.forEach(btn=>btn.addEventListener('click',()=>{
-      buttons.forEach(b=>b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const f = btn.dataset.filter;
-      cards.forEach(c=>{ c.style.display = (f==='all' || c.dataset.type.includes(f)) ? '' : 'none'; });
-    }));
-  })();
-
-  // Thumbnail -> hero switcher
-  (function(){
-    document.querySelectorAll('.pub-card.gallery').forEach(card=>{
-      const hero = card.querySelector('.hero img');
-      const thumbs = card.querySelectorAll('.gallery-strip img');
-      thumbs.forEach(t=>t.addEventListener('click', ()=>{
-        thumbs.forEach(x=>x.removeAttribute('aria-current'));
-        t.setAttribute('aria-current','true');
-        hero.src = t.dataset.full || t.src;
-        hero.alt = t.alt || hero.alt;
-      }));
-    });
-  })();
-</script>
-
-
-  <!-- EXPERIENCE (timeline theme) -->
+  <!-- EXPERIENCE -->
   <section id="exp">
     <div class="container">
       <header>
@@ -720,35 +440,38 @@ h2 {
         <div class="t-item">
           <strong>Graduate Instructional Assistant — ME 3351 / ME 4351</strong>
           <div class="pub-meta">2024–Present · Texas State University</div>
-          <ul>
-            <li>Led instrumentation & controls labs; authored rubrics and safety/ethics modules.</li>
-          </ul>
+          <ul><li>Led instrumentation & controls labs; authored rubrics and safety/ethics modules.</li></ul>
         </div>
         <div class="t-item">
           <strong>Research Intern — DynaGence Lab</strong>
           <div class="pub-meta">2023–2024</div>
-          <ul>
-            <li>Vibration experiments on auxetic beams; NI-DAQ + COMSOL-based model updating.</li>
-          </ul>
+          <ul><li>Vibration experiments on auxetic beams; NI-DAQ + COMSOL-based model updating.</li></ul>
         </div>
       </div>
     </div>
   </section>
 
-  
+  <!-- ABOUT (optional card trio—kept id for nav) -->
+  <section id="about">
+    <div class="container">
+      <header><h2>About</h2><p>Short bio and interests.</p></header>
+      <div class="grid-3">
+        <div class="card">Interests: Safe RL, edge deployment, agricultural robotics.</div>
+        <div class="card">Values: Open science, reproducibility, practical impact.</div>
+        <div class="card">Hobbies: Hiking, embedded tinkering, teaching.</div>
+      </div>
+    </div>
+  </section>
 
-  <!-- EXTRACURRICULAR (image gallery) -->
+  <!-- EXTRACURRICULAR -->
   <section id="extra">
     <div class="container">
-      <header>
-        <h2>Extracurricular Activities</h2>
-        <p>Achievements, outreach, conferences, and more.</p>
-      </header>
-      <div class="gallery">
-        <img src="images/achievement1.jpg" alt="Achievement 1"/>
-        <img src="images/achievement2.jpg" alt="Achievement 2"/>
-        <img src="images/achievement3.jpg" alt="Achievement 3"/>
-        <img src="images/achievement4.jpg" alt="Achievement 4"/>
+      <header><h2>Extracurricular Activities</h2><p>Achievements, outreach, conferences, and more.</p></header>
+      <div class="gallery-grid">
+        <img src="images/achievement1.jpg" alt="Achievement 1" loading="lazy" decoding="async"/>
+        <img src="images/achievement2.jpg" alt="Achievement 2" loading="lazy" decoding="async"/>
+        <img src="images/achievement3.jpg" alt="Achievement 3" loading="lazy" decoding="async"/>
+        <img src="images/achievement4.jpg" alt="Achievement 4" loading="lazy" decoding="async"/>
       </div>
       <p class="pub-meta" style="margin-top:.6rem">Add more images by placing them in <code>/images/</code> and duplicating the <code>&lt;img&gt;</code> tags above.</p>
     </div>
@@ -762,8 +485,8 @@ h2 {
         <div class="card">
           <p><strong>Email:</strong> <a href="mailto:kazishifateee@gmail.com">kazishifateee@gmail.com</a></p>
           <p><strong>Location:</strong> San Marcos, TX</p>
-          <p><strong>Links:</strong> <a class="tag" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a> · <a class="tag" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a> · <a class="tag" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a></p>
-          <p><strong>CV:</strong> <a href="docs/KaziSifatulIslam_CV.pdf" download>Download PDF</a></p>
+          <p><strong>Links:</strong> <a class="pill" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a> · <a class="pill" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a> · <a class="pill" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a></p>
+          <p><strong>CV:</strong> <a class="pill" href="docs/KaziSifatulIslam_CV.pdf" download>Download PDF</a></p>
         </div>
         <form class="card" name="contact" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="contact"/>
@@ -796,38 +519,32 @@ h2 {
       if(btn){ btn.addEventListener('click', function(){ var next=(root.getAttribute('data-theme')==='light')?'dark':'light'; apply(next); localStorage.setItem(key,next); }); }
     })();
 
-    // Animate progress bars when in view
+    // Pub filters
     (function(){
-      var bars=document.querySelectorAll('.bar > span');
-      if(!('IntersectionObserver' in window)){
-        for(var i=0;i<bars.length;i++){ if(!bars[i].style.width) bars[i].style.width='75%'; }
-        return;
-      }
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){ if(!e.target.style.width){ e.target.style.width='75%'; } } });
-      },{threshold:0.55});
-      for(var j=0;j<bars.length;j++){ io.observe(bars[j]); }
+      const buttons = document.querySelectorAll('.filters .filter');
+      const cards = document.querySelectorAll('.pub-card');
+      buttons.forEach(btn=>btn.addEventListener('click',()=>{
+        buttons.forEach(b=>b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const f = btn.dataset.filter;
+        cards.forEach(c=>{ c.style.display = (f==='all' || c.dataset.type.includes(f)) ? '' : 'none'; });
+      }));
+    })();
+
+    // Thumbnail -> hero switcher (for .gallery cards)
+    (function(){
+      document.querySelectorAll('.pub-card.gallery').forEach(card=>{
+        const hero = card.querySelector('.hero-img img');
+        if(!hero) return;
+        const thumbs = card.querySelectorAll('.thumbs img');
+        thumbs.forEach(t=>t.addEventListener('click', ()=>{
+          thumbs.forEach(x=>x.removeAttribute('aria-current'));
+          t.setAttribute('aria-current','true');
+          hero.src = t.dataset.full || t.src;
+          hero.alt = t.alt || hero.alt;
+        }));
+      });
     })();
   </script>
-
-  <script>
-  const text = "👋 Welcome to my Portfolio";
-  const speed = 80; // Typing speed in ms
-  let i = 0;
-
-  function typeWriter() {
-    if (i < text.length) {
-      document.getElementById("welcome-text").innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, speed);
-    }
-  }
-
-  // Start typing effect after slight delay
-  window.addEventListener("load", () => {
-    setTimeout(typeWriter, 300);
-  });
-</script>
-
 </body>
 </html>
