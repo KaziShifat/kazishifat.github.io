@@ -113,20 +113,23 @@
 
 <header id="home" class="container hero">
   <div>
-    <span class="eyebrow">Master of Science • Electrical Engineering [cite: 5]</span>
+    <span class="eyebrow">Master of Science • Electrical Engineering</span>
     <h1>Kazi Sifatul Islam</h1>
     <p style="color: var(--muted); margin-bottom: 1.5rem;">
-      Graduate Research Assistant at **Responsible-AI (RAI) Lab**[cite: 10, 11]. Specializing in Multi-Agent Robotics, Reinforcement Learning, and Edge AI deployment[cite: 20, 24]. Seeking to build trustworthy autonomous systems for real-world impact.
+      Graduate Research Assistant at Responsible-AI (RAI) Lab. Specializing in Multi-Agent Robotics, Reinforcement Learning, and Edge AI deployment. Seeking to build trustworthy autonomous systems for real-world impact.
     </p>
+    <span class="phd-callout">
+      <i class="fas fa-search"></i> Actively seeking a PhD position for the Fall 2026 term.
+    </span>
     <div class="tags">
-      <span class="tag">GPA: 4.00 [cite: 7]</span>
-      <span class="tag">Python [cite: 25]</span>
-      <span class="tag">ROS2 [cite: 31]</span>
-      <span class="tag">PyTorch [cite: 26]</span>
+      <span class="tag">Multi-Agent Robotics</span>
+      <span class="tag">Reinforcement Learning</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Edge AI</span>
     </div>
     <div style="margin-top: 2rem;">
         <a href="mailto:kazi_sifat@txstate.edu" class="tag" style="padding: 10px 20px; text-decoration: none; border-color: var(--term-green); color: var(--term-green);">
-            <i class="fas fa-envelope"></i> Contact Me [cite: 2]
+            <i class="fas fa-envelope"></i>
         </a>
     </div>
   </div>
@@ -142,40 +145,160 @@
         <div class="card">
             <div class="card-icon"><i class="fas fa-robot"></i></div>
             <span class="card-title">Robotics & Autonomy</span>
-            <div class="card-meta">ROS2, Nav2, SLAM, NVIDIA Isaac Sim, Gazebo[cite: 28, 31].</div>
+            <div class="card-meta">ROS2, Nav2, SLAM, NVIDIA Isaac Sim, Gazebo</div>
         </div>
         <div class="card">
             <div class="card-icon"><i class="fas fa-brain"></i></div>
             <span class="card-title">ML & Reinforcement Learning</span>
-            <div class="card-meta">PyTorch, TensorFlow, OpenAI Gym, Petting Zoo, Scikit-learn[cite: 26].</div>
+            <div class="card-meta">PyTorch, TensorFlow, OpenAI Gym, Petting Zoo, Scikit-learn</div>
         </div>
         <div class="card">
             <div class="card-icon"><i class="fas fa-microchip"></i></div>
             <span class="card-title">Hardware & Edge AI</span>
-            <div class="card-meta">NVIDIA Jetson (Orin/Nano), Raspberry Pi, Arduino, PLC[cite: 29].</div>
+            <div class="card-meta">NVIDIA Jetson (Orin/Nano), Raspberry Pi, Arduino, PLC</div>
         </div>
     </div>
 </section>
 
+<style>
+  /* Horizontal Timeline Specific Styles */
+  .timeline-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 20px 5px;
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+    scrollbar-width: thin;
+    scrollbar-color: var(--term-cyan) transparent;
+  }
+
+  .timeline-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+  .timeline-wrapper::-webkit-scrollbar-thumb {
+    background: var(--term-cyan);
+    border-radius: 10px;
+  }
+
+  .h-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    min-width: 320px;
+    flex: 1;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .h-card:hover {
+    border-color: var(--term-green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 132, 0.1);
+  }
+
+  /* Connecting line decoration */
+  .h-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -21px;
+    width: 20px;
+    height: 2px;
+    background: var(--line);
+    z-index: -1;
+  }
+  
+  .h-card:last-child::after {
+    display: none;
+  }
+
+  .h-card .date-badge {
+    font-family: 'Orbitron';
+    font-size: 0.75rem;
+    color: var(--term-cyan);
+    background: rgba(0, 229, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 5px;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .h-card .role {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .h-card .org {
+    font-size: 0.9rem;
+    color: var(--term-green);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .h-card .desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .h-card .icon-box {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--term-mag);
+    font-size: 1rem;
+  }
+</style>
+
 <section id="exp" class="container">
-    <h2><i class="fas fa-briefcase"></i> Experience_Log</h2>
-    <div class="grid">
-        <div class="card">
-            <span class="card-meta">2024 - Present [cite: 15]</span>
-            <span class="card-title">Graduate Research Assistant [cite: 10]</span>
-            <div class="card-meta">Responsible-AI (RAI) Lab, Texas State University[cite: 11]. Focus: Multi-agent systems and uncertainty-aware RL[cite: 20, 33].</div>
-        </div>
-        <div class="card">
-            <span class="card-meta">2019 - 2024 [cite: 23]</span>
-            <span class="card-title">Senior Engineer - Electrical [cite: 18]</span>
-            <div class="card-meta">Bangladesh Steel Re-Rolling Mills (BSRM) Ltd[cite: 19]. Handled large-scale electrical infrastructure and power systems.</div>
-        </div>
-        <div class="card">
-            <span class="card-meta">2024 - 2025 [cite: 22]</span>
-            <span class="card-title">Graduate Instructional Assistant [cite: 12]</span>
-            <div class="card-meta">Ingram School of Engineering[cite: 13]. Assisted in Machine Learning, Signals & Systems, and Power Electronics[cite: 17].</div>
-        </div>
+  <h2><i class="fas fa-route"></i> Career_Path</h2>
+  <div class="timeline-wrapper">
+
+    <div class="h-card">
+      <div class="icon-box"><i class="fas fa-industry"></i></div>
+      <div>
+        <div class="date-badge">2019 — 2024</div>
+        <span class="role">Senior Engineer - Electrical [cite: 18]</span>
+        <span class="org">BSRM Ltd. [cite: 19, 23]</span>
+      </div>
+      <p class="desc">Managed large-scale electrical infrastructure and industrial power systems[cite: 23].</p>
     </div>
+
+    <div class="h-card">
+      <div class="icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
+      <div>
+        <div class="date-badge">2024 — 2025</div>
+        <span class="role">Graduate Instructional Assistant [cite: 12]</span>
+        <span class="org">Ingram School of Engineering [cite: 13, 22]</span>
+      </div>
+      <p class="desc">Assisted in Machine Learning, Signals & Systems, and Power Electronics courses[cite: 17, 22].</p>
+    </div>
+
+    <div class="h-card">
+      <div class="icon-box"><i class="fas fa-microchip"></i></div>
+      <div>
+        <div class="date-badge">2025 — Present</div>
+        <span class="role">Graduate Research Assistant [cite: 10]</span>
+        <span class="org">RAI Lab, Texas State University [cite: 6, 11, 21]</span>
+      </div>
+      <p class="desc">Focusing on multi-agent systems and uncertainty-aware Reinforcement Learning[cite: 20, 24, 33].</p>
+    </div>
+
+  </div>
 </section>
 
 <section id="pubs" class="container">
