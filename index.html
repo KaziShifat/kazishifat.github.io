@@ -332,93 +332,120 @@
 
   <!-- PUBLICATIONS -->
   <section id="pubs" class="pubs-big">
-    <div class="container">
-      <header class="section-head">
-        <h2>Publications</h2>
-        <p>Selected peer-reviewed outputs & preprints. Large figures supported per item.</p>
-        <div class="filters" aria-label="Filter publications">
-          <button class="filter is-active" data-filter="all">All</button>
-          <button class="filter" data-filter="conf">Conference</button>
-          <button class="filter" data-filter="journal">Journal</button>
-          <button class="filter" data-filter="preprint">Preprint</button>
-          <button class="filter" data-filter="poster">Poster</button>
-        </div>
-      </header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-      <div class="pub-grid">
+<style>
+  .pub-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    color: #333;
+  }
 
-        <!-- Gallery card -->
-        <article class="pub-card gallery" data-type="conf">
-          <header class="head">
-            <h3>Hybrid ML–RL for Smart Grid Stability Prediction & Optimized Control</h3>
-            <p class="meta"><span class="venue">IEEE SWC 2025</span> <span class="status">In press</span></p>
-          </header>
+  .pub-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #007bff;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    transition: transform 0.2s;
+  }
 
-          <!-- Big hero image -->
-          <figure class="hero-img">
-            <img src="ML_RL Workflow.jpg" alt="Workflow overview" loading="lazy" decoding="async">
-          </figure>
+  .pub-item:hover {
+    transform: translateX(5px);
+    background-color: #f1f3f5;
+  }
 
-          <!-- Thumbnails -->
-          <div class="thumbs" aria-label="Additional figures">
-            <img src="ML_RL Workflow.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig1.jpg" alt="Ablation results" aria-current="true" loading="lazy" decoding="async">
-            <img src="Agent Env.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig2.jpg" alt="Control policy diagram" loading="lazy" decoding="async">
-            <img src="ML Stage.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig3.jpg" alt="Training curves" loading="lazy" decoding="async">
-            <img src="Table III.jpg" data-full="/assets/pubs/swc2025-grid-rl-fig4.jpg" alt="Stability heatmap" loading="lazy" decoding="async">
-          </div>
+  .pub-icon {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-right: 20px;
+    margin-top: 5px;
+  }
 
-          <div class="actions">
-            <a class="btn-mini btn-arxiv" href="https://arxiv.org/abs/2508.19541" target="_blank" rel="noreferrer">arXiv</a>
-          </div>
+  .pub-content {
+    flex: 1;
+  }
 
-          <details class="bib"><summary>Show BibTeX</summary>
-<pre>@article{islam2025hybrid,
-  title={Hybrid ML--RL for Smart Grid Stability Prediction and Optimized Control},
-  author={Islam, K.S. and Dutta, A. and Mruthyunjaya, S.},
-  journal={IEEE Smart World Congress}, year={2025}
-}</pre>
-          </details>
-        </article>
+  .pub-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+    color: #222;
+  }
 
-        <!-- Stack card -->
-        <article class="pub-card stack" data-type="preprint">
-          <header class="head">
-            <h3>From Tiny Machine Learning to Tiny Deep Learning: A Survey</h3>
-            <p class="meta"><span class="venue">arXiv</span> <span class="status">2025</span></p>
-          </header>
-          <div class="actions">
-            <a class="btn-mini btn-arxiv" href="https://arxiv.org/abs/2506.18927" target="_blank" rel="noreferrer">arXiv</a>
-          </div>
-          <figure><img src="/assets/pubs/tiny-dl-fig1.jpg" alt="TinyDL taxonomy" loading="lazy" decoding="async"></figure>
-          <figure><img src="/assets/pubs/tiny-dl-fig2.jpg" alt="Benchmark comparison" loading="lazy" decoding="async"></figure>
-          <figure><img src="/assets/pubs/tiny-dl-fig3.jpg" alt="Memory vs accuracy" loading="lazy" decoding="async"></figure>
-        </article>
+  .pub-authors {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 8px;
+  }
 
-        <!-- Minimal card -->
-        <article class="pub-card" data-type="conf preprint">
-          <header class="head">
-            <h3>Mentalic Net: RAG-based Conversational AI & Evaluation for Mental Health Support</h3>
-            <p class="meta"><span class="venue">ISEMV 2025</span> <span class="status">Accepted</span></p>
-          </header>
-          <div class="actions">
-            <a class="btn-mini btn-arxiv" href="https://arxiv.org/abs/2509.04456" target="_blank" rel="noreferrer">arXiv</a>
-          </div>
-        </article>
+  .pub-meta {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #777;
+  }
 
-        <!-- Hero-only journal -->
-        <article class="pub-card hero-only" data-type="journal">
-          <header class="head">
-            <h3>Resilience Analysis of a PV/Battery System for Health Care Centers in Rohingya Refugee Camp</h3>
-            <p class="meta"><span class="venue">Energy (Elsevier)</span> <span class="status">2023</span></p>
-          </header>
-          <figure class="hero-img"><img src="/assets/pubs/rohingya-pv-hero.jpg" alt="PV/Battery resilience figure" loading="lazy" decoding="async"></figure>
-          <div class="actions">
-            <a class="btn-mini btn-doi" href="https://doi.org/10.1016/j.energy.2022.125634" target="_blank" rel="noreferrer">DOI</a>
-          </div>
-        </article>
+  .pub-links {
+    margin-top: 10px;
+  }
 
+  .pub-links a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.85rem;
+    margin-right: 15px;
+  }
+
+  .pub-links a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="pub-container">
+  <h2>Selected Publications</h2>
+
+  <div class="pub-item">
+    <div class="pub-icon"><i class="fas fa-file-alt"></i></div>
+    <div class="pub-content">
+      <span class="pub-title">Advancements in Neural Network Architecture</span>
+      <div class="pub-authors">John Doe, Jane Smith, and Robert Brown</div>
+      <div class="pub-meta">Journal of Artificial Intelligence, 2025</div>
+      <div class="pub-links">
+        <a href="#"><i class="fas fa-external-link-alt"></i> Publisher Link</a>
+        <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
       </div>
     </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-icon"><i class="fas fa-users"></i></div>
+    <div class="pub-content">
+      <span class="pub-title">Large Language Models in Healthcare Systems</span>
+      <div class="pub-authors">Jane Smith and Emily White</div>
+      <div class="pub-meta">International Conference on Machine Learning (ICML), 2024</div>
+      <div class="pub-links">
+        <a href="#"><i class="fas fa-code"></i> Code</a>
+        <a href="#"><i class="fas fa-quote-right"></i> BibTeX</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-icon"><i class="fas fa-book"></i></div>
+    <div class="pub-content">
+      <span class="pub-title">The Future of Human-AI Interaction</span>
+      <div class="pub-authors">John Doe</div>
+      <div class="pub-meta">AI Ethics Anthology, Chapter 4, 2023</div>
+      <div class="pub-links">
+        <a href="#"><i class="fas fa-shopping-cart"></i> Buy Chapter</a>
+      </div>
+    </div>
+  </div>
+</div>
   </section>
 
   <!-- EXPERIENCE -->
