@@ -301,6 +301,198 @@
   </div>
 </section>
 
+<style>
+  /* Project Section Header */
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--term-cyan);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Grid Layout */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Project Card "Window" Design */
+  .p-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .p-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--term-green);
+    box-shadow: 0 15px 35px rgba(0, 255, 132, 0.1);
+  }
+
+  /* Terminal Window Bar */
+  .p-window-bar {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .p-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .p-dot.r { background: #ff5f56; }
+  .p-dot.y { background: #ffbd2e; }
+  .p-dot.g { background: #27c93f; }
+
+  /* Image Container */
+  .p-img-box {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .p-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .p-card:hover .p-img-box img { opacity: 1; }
+
+  /* Content Styling */
+  .p-content { padding: 1.5rem; flex-grow: 1; }
+  .p-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1.4;
+  }
+
+  .p-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .p-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+</style>
+
+<section id="projects" class="container">
+  <h2 class="section-title"><i class="fas fa-project-diagram"></i> Executing_Deployments...</h2>
+  
+  <div class="project-grid">
+    
+    <div class="p-card">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">marl_sim2real.py</span>
+      </div>
+      <div class="p-img-box"><img src="project1.jpg" alt="MARL Sim2Real"></div>
+      <div class="p-content">
+        <span class="p-title">MARL Sim2Real Deployment</span>
+        <p class="p-desc">Uncertainty-aware UCB-driven Multi-Agent Reinforcement Learning integrated with SLAM feedback for physical robot pathfinding[cite: 33].</p>
+        <div class="tags"><span class="tag">ROS2</span><span class="tag">Sim2Real</span></div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">lerobot_imitation.sh</span>
+      </div>
+      <div class="p-img-box"><img src="project2.jpg" alt="LeRobot"></div>
+      <div class="p-content">
+        <span class="p-title">LeRobot Imitation Learning</span>
+        <p class="p-desc">Learning pick-and-place tasks through imitation learning on a robotic arm within the LeRobot simulation environment[cite: 36].</p>
+        <div class="tags"><span class="tag">Imitation Learning</span><span class="tag">LeRobot</span></div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">llm_sorting.exe</span>
+      </div>
+      <div class="p-img-box"><img src="project3.jpg" alt="LLM Open Vocabulary"></div>
+      <div class="p-content">
+        <span class="p-title">LLM Semantic Object Sorting</span>
+        <p class="p-desc">Open-vocabulary detection for autonomous systems using an OpenManipulator-X arm driven by LLM semantics[cite: 35].</p>
+        <div class="tags"><span class="tag">LLM</span><span class="tag">Computer Vision</span></div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">drone_rl_sim.bin</span>
+      </div>
+      <div class="p-img-box"><img src="project4.jpg" alt="Drone RL"></div>
+      <div class="p-content">
+        <span class="p-title">RL Drone Simulation</span>
+        <p class="p-desc">Implementing reinforcement learning for altitude control and target achievement in a simplified drone system[cite: 37].</p>
+        <div class="tags"><span class="tag">Drone</span><span class="tag">Control</span></div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">collab_arms.rl</span>
+      </div>
+      <div class="p-img-box"><img src="project5.jpg" alt="Collaborative Arms"></div>
+      <div class="p-content">
+        <span class="p-title">Collaborative Robot Arms</span>
+        <p class="p-desc">MARL-based coordination between two robot arms to manage shared tasks in a synchronized environment[cite: 33].</p>
+        <div class="tags"><span class="tag">MARL</span><span class="tag">Collaboration</span></div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">aqi_forecasting.ai</span>
+      </div>
+      <div class="p-img-box"><img src="project6.jpg" alt="AQI Edge AI"></div>
+      <div class="p-content">
+        <span class="p-title">Edge-AI AQI Framework</span>
+        <p class="p-desc">Forecasting the Air Quality Index (AQI) using quantized deep learning models deployed on Edge-AI platforms[cite: 45].</p>
+        <div class="tags"><span class="tag">Edge AI</span><span class="tag">Forecasting</span></div>
+      </div>
+    </div>
+
+    <div class="p-card" style="grid-column: span 1 / -1;">
+      <div class="p-window-bar">
+        <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
+        <span style="font-size: 0.7rem; color: var(--muted); margin-left: 10px;">smartgrid_hybrid.sys</span>
+      </div>
+      <div class="p-img-box" style="aspect-ratio: 21 / 9;"><img src="project7.jpg" alt="Smartgrid Hybrid"></div>
+      <div class="p-content">
+        <span class="p-title">Hybrid ML-RL Smartgrid Control</span>
+        <p class="p-desc">A hybrid strategy for predicting and optimizing smartgrid stability control through machine learning and reinforcement learning[cite: 65].</p>
+        <div class="tags"><span class="tag">Smartgrid</span><span class="tag">Stability</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <section id="pubs" class="container">
     <h2><i class="fas fa-scroll"></i> Research_Papers</h2>
     
