@@ -91,6 +91,153 @@
     @keyframes pulse-animation { 0% { box-shadow: 0 0 0 0px rgba(0, 255, 132, 0.7); } 100% { box-shadow: 0 0 0 10px rgba(0, 255, 132, 0); } }
 
     footer { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.8rem; }
+
+    /* ===================== PUBLICATIONS ===================== */
+    .pub-subsection-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      color: var(--term-mag);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 2.5rem 0 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pub-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .pub-card:hover {
+      border-color: var(--term-cyan);
+      box-shadow: 0 5px 20px rgba(0, 229, 255, 0.08);
+    }
+
+    .pub-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .pub-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      color: var(--term-green);
+      background: rgba(0, 255, 132, 0.08);
+      border: 1px solid rgba(0, 255, 132, 0.2);
+      border-radius: 6px;
+      padding: 4px 10px;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .pub-body { flex: 1; }
+
+    .pub-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .pub-authors {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .pub-authors .highlight-author {
+      color: var(--term-cyan);
+      font-weight: 600;
+    }
+
+    .pub-venue {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .pub-card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .pub-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pub-badge {
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .pub-badge.q1 {
+      background: rgba(199, 125, 255, 0.15);
+      color: var(--term-mag);
+      border: 1px solid rgba(199, 125, 255, 0.3);
+    }
+    .pub-badge.conf {
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--term-cyan);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+    .pub-badge.accepted {
+      background: rgba(0, 255, 132, 0.1);
+      color: var(--term-green);
+      border: 1px solid rgba(0, 255, 132, 0.2);
+    }
+    .pub-badge.poster {
+      background: rgba(255, 189, 46, 0.1);
+      color: #ffbd2e;
+      border: 1px solid rgba(255, 189, 46, 0.25);
+    }
+
+    .read-paper-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 1px solid var(--term-cyan);
+      color: var(--term-cyan);
+      background: rgba(0, 229, 255, 0.05);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .read-paper-btn:hover {
+      background: rgba(0, 229, 255, 0.15);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+      transform: translateY(-2px);
+    }
+    .read-paper-btn i { font-size: 0.75rem; }
+
+    .doi-text {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -135,8 +282,6 @@
     margin-top: 2rem;
     align-items: center;
   }
-
-  /* Base style for the social boxes */
   .social-box {
     display: flex;
     align-items: center;
@@ -151,43 +296,21 @@
     font-size: 1.2rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  /* Hover Effects with Brand Colors */
-  .social-box:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
+  .social-box:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.08); }
   .social-box.mail:hover { color: #00ff84; border-color: #00ff84; box-shadow: 0 0 15px rgba(0, 255, 132, 0.3); }
   .social-box.linkedin:hover { color: #0077b5; border-color: #0077b5; box-shadow: 0 0 15px rgba(0, 119, 181, 0.3); }
   .social-box.scholar:hover { color: #4285f4; border-color: #4285f4; box-shadow: 0 0 15px rgba(66, 133, 244, 0.3); }
   .social-box.orcid:hover { color: #a6ce39; border-color: #a6ce39; box-shadow: 0 0 15px rgba(166, 206, 57, 0.3); }
   .social-box.facebook:hover { color: #1877f2; border-color: #1877f2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.3); }
 </style>
-
 <div class="social-container">
-  <a href="mailto:kazi_sifat@txstate.edu" class="social-box mail" title="Email">
-    <i class="fas fa-envelope"></i>
-  </a>
-
-  <a href="https://www.linkedin.com/in/kazi-sifatul-islam/" target="_blank" class="social-box linkedin" title="LinkedIn">
-    <i class="fab fa-linkedin-in"></i>
-  </a>
-
-  <a href="https://scholar.google.com/citations?user=tROcM68AAAAJ&hl=en" target="_blank" class="social-box scholar" title="Google Scholar">
-    <i class="fab fa-google"></i>
-  </a>
-
-  <a href="https://orcid.org/0000-0002-3151-6987" target="_blank" class="social-box orcid" title="ORCID">
-    <i class="fab fa-orcid"></i>
-  </a>
-
-  <a href="https://www.facebook.com/kazi.shifat.75" target="_blank" class="social-box facebook" title="Facebook">
-    <i class="fab fa-facebook-f"></i>
-  </a>
+  <a href="mailto:kazi_sifat@txstate.edu" class="social-box mail" title="Email"><i class="fas fa-envelope"></i></a>
+  <a href="https://www.linkedin.com/in/kazi-sifatul-islam/" target="_blank" class="social-box linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  <a href="https://scholar.google.com/citations?user=tROcM68AAAAJ&hl=en" target="_blank" class="social-box scholar" title="Google Scholar"><i class="fab fa-google"></i></a>
+  <a href="https://orcid.org/0000-0002-3151-6987" target="_blank" class="social-box orcid" title="ORCID"><i class="fab fa-orcid"></i></a>
+  <a href="https://www.facebook.com/kazi.shifat.75" target="_blank" class="social-box facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
 </div>
   </div>
-
   <div class="portrait-box">
     <img src="Headshot.png" alt="Kazi Sifatul Islam Portfolio Image">
   </div>
@@ -215,113 +338,30 @@
 </section>
 
 <style>
-  /* Horizontal Timeline Specific Styles */
   .timeline-wrapper {
-    display: flex;
-    gap: 20px;
-    padding: 20px 5px;
-    overflow-x: auto; /* Allows horizontal scrolling on small screens */
-    scrollbar-width: thin;
-    scrollbar-color: var(--term-cyan) transparent;
+    display: flex; gap: 20px; padding: 20px 5px; overflow-x: auto;
+    scrollbar-width: thin; scrollbar-color: var(--term-cyan) transparent;
   }
-
-  .timeline-wrapper::-webkit-scrollbar {
-    height: 6px;
-  }
-  .timeline-wrapper::-webkit-scrollbar-thumb {
-    background: var(--term-cyan);
-    border-radius: 10px;
-  }
-
+  .timeline-wrapper::-webkit-scrollbar { height: 6px; }
+  .timeline-wrapper::-webkit-scrollbar-thumb { background: var(--term-cyan); border-radius: 10px; }
   .h-card {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    min-width: 320px;
-    flex: 1;
-    position: relative;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.5rem; min-width: 320px; flex: 1; position: relative;
+    transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
   }
-
-  .h-card:hover {
-    border-color: var(--term-green);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 255, 132, 0.1);
-  }
-
-  /* Connecting line decoration */
-  .h-card::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -21px;
-    width: 20px;
-    height: 2px;
-    background: var(--line);
-    z-index: -1;
-  }
-  
-  .h-card:last-child::after {
-    display: none;
-  }
-
-  .h-card .date-badge {
-    font-family: 'Orbitron';
-    font-size: 0.75rem;
-    color: var(--term-cyan);
-    background: rgba(0, 229, 255, 0.1);
-    padding: 4px 10px;
-    border-radius: 5px;
-    width: fit-content;
-    margin-bottom: 1rem;
-  }
-
-  .h-card .role {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .h-card .org {
-    font-size: 0.9rem;
-    color: var(--term-green);
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .h-card .desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .h-card .icon-box {
-    position: absolute;
-    top: -15px;
-    right: 20px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--term-mag);
-    font-size: 1rem;
-  }
+  .h-card:hover { border-color: var(--term-green); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 255, 132, 0.1); }
+  .h-card::after { content: ''; position: absolute; top: 50%; right: -21px; width: 20px; height: 2px; background: var(--line); z-index: -1; }
+  .h-card:last-child::after { display: none; }
+  .h-card .date-badge { font-family: 'Orbitron'; font-size: 0.75rem; color: var(--term-cyan); background: rgba(0, 229, 255, 0.1); padding: 4px 10px; border-radius: 5px; width: fit-content; margin-bottom: 1rem; }
+  .h-card .role { font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 5px; display: block; }
+  .h-card .org { font-size: 0.9rem; color: var(--term-green); margin-bottom: 12px; display: block; }
+  .h-card .desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+  .h-card .icon-box { position: absolute; top: -15px; right: 20px; background: var(--bg); border: 1px solid var(--line); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--term-mag); font-size: 1rem; }
 </style>
 
 <section id="exp" class="container">
   <h2><i class="fas fa-route"></i> Career_Path</h2>
   <div class="timeline-wrapper">
-
     <div class="h-card">
       <div class="icon-box"><i class="fas fa-industry"></i></div>
       <div>
@@ -331,7 +371,6 @@
       </div>
       <p class="desc">Managed large-scale electrical infrastructure and industrial power systems.</p>
     </div>
-
     <div class="h-card">
       <div class="icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
       <div>
@@ -341,7 +380,6 @@
       </div>
       <p class="desc">Assisted in Machine Learning, Signals & Systems, and Power Electronics courses.</p>
     </div>
-
     <div class="h-card">
       <div class="icon-box"><i class="fas fa-microchip"></i></div>
       <div>
@@ -351,109 +389,29 @@
       </div>
       <p class="desc">Focusing on multi-agent systems and uncertainty-aware Reinforcement Learning.</p>
     </div>
-
   </div>
 </section>
 
 <style>
-  /* Project Section Header */
-  .section-title {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--term-cyan);
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  /* Grid Layout */
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
-  }
-
-  /* Project Card "Window" Design */
-  .p-card {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
-
-  .p-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--term-green);
-    box-shadow: 0 15px 35px rgba(0, 255, 132, 0.1);
-  }
-
-  /* Terminal Window Bar */
-  .p-window-bar {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid var(--line);
-  }
-
+  .section-title { font-family: 'Orbitron', sans-serif; color: var(--term-cyan); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px; }
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+  .p-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease; }
+  .p-card:hover { transform: translateY(-10px); border-color: var(--term-green); box-shadow: 0 15px 35px rgba(0, 255, 132, 0.1); }
+  .p-window-bar { background: rgba(255, 255, 255, 0.05); padding: 8px 12px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); }
   .p-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .p-dot.r { background: #ff5f56; }
-  .p-dot.y { background: #ffbd2e; }
-  .p-dot.g { background: #27c93f; }
-
-  /* Image Container */
-  .p-img-box {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: #000;
-  }
-
-  .p-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  }
-
+  .p-dot.r { background: #ff5f56; } .p-dot.y { background: #ffbd2e; } .p-dot.g { background: #27c93f; }
+  .p-img-box { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+  .p-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s ease; }
   .p-card:hover .p-img-box img { opacity: 1; }
-
-  /* Content Styling */
   .p-content { padding: 1.5rem; flex-grow: 1; }
-  .p-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.95rem;
-    color: var(--ink);
-    margin-bottom: 10px;
-    display: block;
-    line-height: 1.4;
-  }
-
-  .p-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
-
-  .p-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-  }
+  .p-title { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; color: var(--ink); margin-bottom: 10px; display: block; line-height: 1.4; }
+  .p-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+  .p-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
 </style>
 
 <section id="projects" class="container">
   <h2 class="section-title"><i class="fas fa-project-diagram"></i> Executing_Deployments...</h2>
-  
   <div class="project-grid">
-    
     <div class="p-card">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -462,11 +420,10 @@
       <div class="p-img-box"><img src="MARL.jpg" alt="MARL Sim2Real"></div>
       <div class="p-content">
         <span class="p-title">MARL Sim2Real Deployment</span>
-        <p class="p-desc">Uncertainty-aware UCB-driven Multi-Agent Reinforcement Learning integrated with SLAM feedback for physical robot pathfinding[cite: 33].</p>
+        <p class="p-desc">Uncertainty-aware UCB-driven Multi-Agent Reinforcement Learning integrated with SLAM feedback for physical robot pathfinding.</p>
         <div class="tags"><span class="tag">ROS2</span><span class="tag">Sim2Real</span></div>
       </div>
     </div>
-
     <div class="p-card">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -475,11 +432,10 @@
       <div class="p-img-box"><img src="lerobot.gif" alt="LeRobot"></div>
       <div class="p-content">
         <span class="p-title">LeRobot Imitation Learning</span>
-        <p class="p-desc">Learning pick-and-place tasks through imitation learning on a robotic arm within the LeRobot simulation environment[cite: 36].</p>
+        <p class="p-desc">Learning pick-and-place tasks through imitation learning on a robotic arm within the LeRobot simulation environment.</p>
         <div class="tags"><span class="tag">Imitation Learning</span><span class="tag">LeRobot</span></div>
       </div>
     </div>
-
     <div class="p-card">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -492,7 +448,6 @@
         <div class="tags"><span class="tag">LLM</span><span class="tag">Computer Vision</span></div>
       </div>
     </div>
-
     <div class="p-card">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -505,7 +460,6 @@
         <div class="tags"><span class="tag">Drone</span><span class="tag">Control</span></div>
       </div>
     </div>
-
     <div class="p-card">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -518,7 +472,6 @@
         <div class="tags"><span class="tag">MARL</span><span class="tag">Collaboration</span></div>
       </div>
     </div>
-
     <div class="p-card">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -531,7 +484,6 @@
         <div class="tags"><span class="tag">Edge AI</span><span class="tag">Forecasting</span></div>
       </div>
     </div>
-
     <div class="p-card" style="grid-column: span 1 / -1;">
       <div class="p-window-bar">
         <div class="p-dot r"></div><div class="p-dot y"></div><div class="p-dot g"></div>
@@ -544,150 +496,348 @@
         <div class="tags"><span class="tag">Smartgrid</span><span class="tag">Stability</span></div>
       </div>
     </div>
-
   </div>
 </section>
+
+<!-- ============================= PUBLICATIONS ============================= -->
 <section id="pubs" class="container">
-    <h2><i class="fas fa-scroll"></i> Publications</h2>
+  <h2><i class="fas fa-scroll"></i> Publications</h2>
 
-    <!-- ===================== JOURNAL ARTICLES ===================== -->
-    <h3 style="margin-top:2rem;">Journal Articles</h3>
+  <!-- CONFERENCE PAPERS -->
+  <div class="pub-subsection-title">
+    <i class="fas fa-microphone-alt"></i> Conference Papers
+  </div>
 
-    <div class="card" style="margin-bottom:1.5rem; border-left:4px solid var(--term-mag);">
-        <span class="tag" style="background:var(--term-mag); color:white;">Q1 Journal (IF: 8.857)</span>
-        <span class="card-title">
-            Resilience Analysis of a PV/Battery System of Health Care Centers in Rohingya Refugee Camp
-        </span>
-        <div class="card-meta">
-            Energy, Elsevier, Vol. 263, 2023. DOI: 10.1016/j.energy.2022.125634
+  <!-- C1 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">C1</span>
+      <div class="pub-body">
+        <div class="pub-title">Hybrid ML-RL Approach for Smart Grid Stability Prediction and Optimized Control Strategy</div>
+        <div class="pub-authors">
+          <span class="highlight-author">Kazi Sifatul Islam</span>, A. Dutta, and S. Mruthyunjaya
         </div>
+        <div class="pub-venue">
+          IEEE Smart World Congress (SWC), Calgary, AB, Canada, 2025, pp. 116–124
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-        <span class="tag">Q1 Journal (IF: 3.889)</span>
-        <span class="card-title">
-            Outage Survivability Investigation of a PV/Battery/CHP System in a Hospital Building in Texas
-        </span>
-        <div class="card-meta">
-            Sustainability, Vol. 14, 14965, 2022. DOI: 10.3390/su142214965
-        </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge conf">IEEE SWC 2025</span>
+        <span class="pub-badge accepted">Published</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1109/SWC65939.2025.00304</span>
+        <a href="https://doi.org/10.1109/SWC65939.2025.00304" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-        <span class="tag">ACM Computing Surveys</span>
-        <span class="card-title">
-            From Tiny Machine Learning to Tiny Deep Learning: A Survey
-        </span>
-        <div class="card-meta">
-            ACM Comput. Surv., Just Accepted (Nov 2025). DOI: 10.1145/3776588
+  <!-- C2 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">C2</span>
+      <div class="pub-body">
+        <div class="pub-title">Reasoning under Uncertainty in Multi-Agent Reinforcement Learning (MARL) Using Upper Confidence Bound (UCB) Technique</div>
+        <div class="pub-authors">
+          <span class="highlight-author">Kazi Sifatul Islam</span>, Anandi Dutta, A. Selim Anwar, M. Menezes De Carvalho
         </div>
+        <div class="pub-venue">
+          IEEE 16th Annual Computing and Communication Workshop and Conference (CCWC), Las Vegas, NV, USA, 2026, pp. 1266–1273
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-        <span class="card-title">
-            Unlocking the Resource Potential of Livestock Waste in Bangladesh
-        </span>
-        <div class="card-meta">
-            Environmental Progress & Sustainable Energy, 2023. DOI: 10.1002/ep.14063
-        </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge conf">IEEE CCWC 2026</span>
+        <span class="pub-badge accepted">Published</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1109/CCWC67433.2026.11393838</span>
+        <a href="https://doi.org/10.1109/CCWC67433.2026.11393838" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-        <span class="card-title">
-            Biogas Production from Animal Farm Waste in Bangladesh: Case Studies of Two Selected Farms
-        </span>
-        <div class="card-meta">
-            Environmental Progress & Sustainable Energy, 2023. DOI: 10.1002/ep.14214
+  <!-- C3 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">C3</span>
+      <div class="pub-body">
+        <div class="pub-title">Edge-AI Framework for Air Quality Index (AQI) Forecasting with Quantized Deep Learning Models</div>
+        <div class="pub-authors">
+          Anandi Dutta, <span class="highlight-author">Kazi Sifatul Islam</span>, Damian Valles Molina
         </div>
+        <div class="pub-venue">
+          IEEE 16th Annual Computing and Communication Workshop and Conference (CCWC), Las Vegas, NV, USA, 2026, pp. 1266–1273
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-        <span class="card-title">
-            A Comprehensive Survey on Bio-Inspired Algorithms: Taxonomy, Applications, and Future Directions
-        </span>
-        <div class="card-meta">
-            arXiv:2506.04238, 2025
-        </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge conf">IEEE CCWC 2026</span>
+        <span class="pub-badge accepted">Published</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1109/CCWC67433.2026.11393866</span>
+        <a href="https://doi.org/10.1109/CCWC67433.2026.11393866" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
     </div>
+  </div>
 
-    <!-- ===================== CONFERENCE PAPERS ===================== -->
-    <h3 style="margin-top:3rem;">Conference Papers</h3>
-
-    <div class="grid">
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-bolt"></i></div>
-            <span class="card-title">
-                Hybrid ML-RL Approach for Smart Grid Stability Prediction and Optimized Control Strategy
-            </span>
-            <div class="card-meta">
-                IEEE Smart World Congress, Calgary, Canada, 2025. <br>
-                <strong>Accepted (In-press)</strong> · 
-                <a href="https://arxiv.org/abs/2508.19541" target="_blank">arXiv</a>
-            </div>
+  <!-- C4 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">C4</span>
+      <div class="pub-body">
+        <div class="pub-title">Mentalic Net: Development of RAG-based Conversational AI and Evaluation Framework for Mental Health Support</div>
+        <div class="pub-authors">
+          A. Dutta, S. Mruthyunjaya, J. Saddington, and <span class="highlight-author">K. S. Islam</span>
         </div>
-
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-users"></i></div>
-            <span class="card-title">
-                Reasoning under Uncertainty in Multi-Agent Reinforcement Learning Using UCB
-            </span>
-            <div class="card-meta">
-                IEEE CCWC 2026, Las Vegas, USA. <strong>Accepted</strong>
-            </div>
+        <div class="pub-venue">
+          2025 IEEE International Symposium on Emerging Metaverse (ISEMV), Honolulu, HI, USA, 2025, pp. 77–84
         </div>
-
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-file-alt"></i></div>
-            <span class="card-title">
-                Edge-AI Framework for AQI Forecasting with Quantized Deep Learning Models
-            </span>
-            <div class="card-meta">
-                IEEE CCWC 2026, Las Vegas, USA. <strong>Accepted</strong>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-comments"></i></div>
-            <span class="card-title">
-                Mentalic Net: RAG-based Conversational AI for Mental Health Support
-            </span>
-            <div class="card-meta">
-                ISEMV 2025. <strong>Accepted</strong> · 
-                <a href="https://arxiv.org/abs/2509.04456" target="_blank">arXiv</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-microchip"></i></div>
-            <span class="card-title">
-                AI-Driven IoT Energy Management Framework
-            </span>
-            <div class="card-meta">
-                IEEE Smart World Congress, Calgary, Canada, 2025. <strong>Accepted (In-press)</strong>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <!-- ===================== POSTER PRESENTATIONS ===================== -->
-    <h3 style="margin-top:3rem;">Poster Presentations</h3>
-
-    <div class="card">
-        <span class="card-title">
-            From Prediction to Action: A Hybrid ML-RL Model for Smart Grid Stability Control
-        </span>
-        <div class="card-meta">
-            Graduate Student Research Conference (GSRC 2025), Texas State University
-        </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge conf">IEEE ISEMV 2025</span>
+        <span class="pub-badge accepted">Published</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1109/ISEMV67326.2025.00023</span>
+        <a href="https://doi.org/10.1109/ISEMV67326.2025.00023" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-        <span class="card-title">
-            MentalicNet: Development of RAG-based Conversational AI and Evaluation Framework
-        </span>
-        <div class="card-meta">
-            AI in Health Conference 2025, Rice University, USA
+  <!-- C5 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">C5</span>
+      <div class="pub-body">
+        <div class="pub-title">Introducing AI-Driven IoT Energy Management Framework</div>
+        <div class="pub-authors">
+          S. Mruthyunjaya, A. Dutta, <span class="highlight-author">K. S. Islam</span>
         </div>
+        <div class="pub-venue">
+          2025 IEEE Smart World Congress (SWC), Calgary, AB, Canada, 2025, pp. 125–130
+        </div>
+      </div>
     </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge conf">IEEE SWC 2025</span>
+        <span class="pub-badge accepted">Published</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1109/SWC65939.2025.00305</span>
+        <a href="https://doi.org/10.1109/SWC65939.2025.00305" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOURNAL ARTICLES -->
+  <div class="pub-subsection-title" style="margin-top: 3rem;">
+    <i class="fas fa-book-open"></i> Journal Articles
+  </div>
+
+  <!-- J1 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">J1</span>
+      <div class="pub-body">
+        <div class="pub-title">From Tiny Machine Learning to Tiny Deep Learning: A Survey</div>
+        <div class="pub-authors">
+          Somvanshi S., Islam M. M., Chhetri G., Chakraborty R., Mimi M. S., Shuvo S. A., <span class="highlight-author">Islam K. S.</span>, Javed S., Rafat S. A., Dutta A., Das S.
+        </div>
+        <div class="pub-venue">
+          ACM Computing Surveys (CSUR), vol. 58, no. 7, Article 168, pp. 1–33, 2025
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge q1">ACM Computing Surveys</span>
+        <span class="pub-badge accepted">Published 2025</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1145/3776588</span>
+        <a href="https://doi.org/10.1145/3776588" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- J2 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">J2</span>
+      <div class="pub-body">
+        <div class="pub-title">Resilience Analysis of a PV/Battery System of Health Care Centers in Rohingya Refugee Camp</div>
+        <div class="pub-authors">
+          Tamal Chowdhury, Hemal Chowdhury, <span class="highlight-author">Kazi Sifatul Islam</span>, Ayyoob Sharifi, Richard Corkish, Sadiq M. Sait
+        </div>
+        <div class="pub-venue">
+          Energy, Elsevier, Vol. 263, 2023
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge q1">Q1 Journal · IF 8.857</span>
+        <span class="pub-badge accepted">Published 2023</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1016/j.energy.2022.125634</span>
+        <a href="https://doi.org/10.1016/j.energy.2022.125634" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- J3 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">J3</span>
+      <div class="pub-body">
+        <div class="pub-title">Outage Survivability Investigation of a PV/Battery/CHP System in a Hospital Building in Texas</div>
+        <div class="pub-authors">
+          <span class="highlight-author">Kazi Sifatul Islam</span>, Samiul Hasan, Tamal Chowdhury, Hemal Chowdhury, Sadiq M. Sait
+        </div>
+        <div class="pub-venue">
+          Sustainability, Vol. 14, 14965, 2022
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge q1">Q1 Journal · IF 3.889</span>
+        <span class="pub-badge accepted">Published 2022</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.3390/su142214965</span>
+        <a href="https://doi.org/10.3390/su142214965" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- J4 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">J4</span>
+      <div class="pub-body">
+        <div class="pub-title">Unlocking the Resource Potential of Livestock Waste in Bangladesh</div>
+        <div class="pub-authors">
+          Das P., <span class="highlight-author">Kazi Sifatul Islam</span>, Mijan Uddin SM.
+        </div>
+        <div class="pub-venue">
+          Environmental Progress &amp; Sustainable Energy, 2023; e14063
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge accepted">Published 2023</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1002/ep.14063</span>
+        <a href="https://doi.org/10.1002/ep.14063" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- J5 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">J5</span>
+      <div class="pub-body">
+        <div class="pub-title">Biogas Production from Animal Farm Waste in Bangladesh: Case Studies of Two Selected Farms</div>
+        <div class="pub-authors">
+          Das P., <span class="highlight-author">Kazi Sifatul Islam</span>, Mijan Uddin SM.
+        </div>
+        <div class="pub-venue">
+          Environmental Progress &amp; Sustainable Energy, 2023; e14214
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge accepted">Published 2023</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span class="doi-text">DOI: 10.1002/ep.14214</span>
+        <a href="https://doi.org/10.1002/ep.14214" target="_blank" class="read-paper-btn">
+          <i class="fas fa-external-link-alt"></i> Read Paper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSTER PRESENTATIONS -->
+  <div class="pub-subsection-title" style="margin-top: 3rem;">
+    <i class="fas fa-chalkboard"></i> Poster Presentations
+  </div>
+
+  <!-- P1 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">P1</span>
+      <div class="pub-body">
+        <div class="pub-title">From Prediction to Action: A Hybrid ML-RL Model for Smart Grid Stability Control</div>
+        <div class="pub-authors">
+          <span class="highlight-author">Kazi Sifatul Islam</span>, Dr. Anandi K. Dutta
+        </div>
+        <div class="pub-venue">
+          Graduate Student Research Conference (GSRC 2025), The Graduate College, Texas State University
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge poster">Poster · GSRC 2025</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div class="pub-card">
+    <div class="pub-card-top">
+      <span class="pub-number">P2</span>
+      <div class="pub-body">
+        <div class="pub-title">MentalicNet: Development of RAG-based Conversational AI and Evaluation Framework for Mental Health Support</div>
+        <div class="pub-authors">
+          Shivani Mruthyunjaya, Anandi K. Dutta, Deborah Rose, <span class="highlight-author">Kazi Sifatul Islam</span>, Jessica Saddington
+        </div>
+        <div class="pub-venue">
+          AI in Health Conference 2025, Rice University, USA
+        </div>
+      </div>
+    </div>
+    <div class="pub-card-bottom">
+      <div class="pub-badges">
+        <span class="pub-badge poster">Poster · Rice University 2025</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <section id="extra" class="container">
@@ -703,7 +853,7 @@
         </div>
         <div class="card">
             <span class="card-title"><i class="fas fa-futbol"></i> Sports Leadership</span>
-            <div class="card-meta">University Cricket & Soccer Captain; Badminton Champion.</div>
+            <div class="card-meta">University Cricket &amp; Soccer Captain; Badminton Champion.</div>
         </div>
     </div>
 </section>
@@ -720,7 +870,6 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
   const themeBtn = document.getElementById('themeBtn');
   themeBtn.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
